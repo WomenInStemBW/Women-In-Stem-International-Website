@@ -216,7 +216,7 @@ const Home = () => {
             STEM, Astronomy and Space Education
           </h1>
           <h2 className="hero-subtitle">
-            Outreach and Consulting
+            Training, Outreach and Consulting
           </h2>
           <p className="hero-description">
             Women in STEM - International provides STEM, Astronomy and Space Technology 
@@ -224,7 +224,7 @@ const Home = () => {
           </p>
           <div className="hero-buttons">
             <a href="/about" className="hero-btn btn-primary-hero">Learn More</a>
-            <a href="/contact" className="hero-btn btn-secondary-hero">Get Involved</a>
+            <a href="/opportunities" className="hero-btn btn-secondary-hero">Get Involved</a>
           </div>
         </div>
       </section>
@@ -244,7 +244,7 @@ const Home = () => {
                 color: '#2d3748', 
                 marginBottom: '20px' 
               }}>
-                Empowering Women in STEM
+                Advancing Africa's Space Science & Technology Across Generations
               </h2>
               <p style={{ 
                 fontSize: '1.1rem', 

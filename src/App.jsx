@@ -12,7 +12,7 @@ import AstroSpace from './pages/AstroSpace';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import Teams from './pages/Teams';
-import News from './pages/News';
+import Opportunities from './pages/Opportunities';
 import Contact from './pages/Contact';
 import About from './pages/About';
 
@@ -61,7 +61,7 @@ function App() {
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/teams" element={<Teams />} />
-              <Route path="/news" element={<News />} />
+              <Route path="/opportunities" element={<Opportunities />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/astro-space" element={<AstroSpace />} />
 

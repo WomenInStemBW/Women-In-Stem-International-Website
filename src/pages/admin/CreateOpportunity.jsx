@@ -70,7 +70,7 @@ const CreateOpportunity = () => {
         <div className="col-12 col-lg-8">
           <div className="d-flex justify-content-between align-items-center mb-4">
             <h1>Create New Opportunity</h1>
-            <button 
+            <button
               onClick={() => navigate('/admin/opportunities')}
               className="btn btn-outline-secondary"
             >
@@ -146,6 +146,14 @@ const CreateOpportunity = () => {
                     <option value="competition">Competition</option>
                     <option value="internship">Internship</option>
                     <option value="conference">Conference</option>
+                    <option value="portal">Portal</option>
+                    <option value="mentoring">Mentoring Program</option>
+                    <option value="community">Community</option>
+                    <option value="professional">Professional Society</option>
+                    <option value="advocacy">Advocacy Organization</option>
+                    <option value="youth">Youth Organization</option>
+                    <option value="scientific">Scientific Society</option>
+                    <option value="stem">STEM Organization</option>
                     <option value="other">Other</option>
                   </select>
                 </div>

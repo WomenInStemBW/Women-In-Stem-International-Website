@@ -187,11 +187,10 @@ const AstroSpace = () => {
                     👤
                   </div>
                 </div>
-                <h4 style={{ color: '#2d3748', marginBottom: '10px' }}>Host Name 1</h4>
-                <p style={{ color: '#718096', fontSize: '0.9rem', marginBottom: '15px' }}>Title/Role</p>
+                <h4 style={{ color: '#2d3748', marginBottom: '10px' }}>Tumo Fortunate Kedumele</h4>
+                <p style={{ color: '#718096', fontSize: '0.9rem', marginBottom: '15px' }}>Founder/Host</p>
                 <p style={{ color: '#4a5568', fontSize: '0.95rem', lineHeight: '1.6' }}>
-                  Brief bio and background information about the host will go here.
-                  Their expertise and interests in space science.
+                  I have always been interested in STEM subjects from a young age, I was also passionate about astronomy and fascinated by space technology. During varsity years I was mostly drawn to space communication, particularly satellites, cubesats, radio and microwave engineering. Venturing into the astronomy field gave me an opportunity to work with radio communication, instrumentation and astronomy in radio astronomy research.
                 </p>
               </div>
             </div>
@@ -234,11 +233,10 @@ const AstroSpace = () => {
                     👤
                   </div>
                 </div>
-                <h4 style={{ color: '#2d3748', marginBottom: '10px' }}>Host Name 2</h4>
-                <p style={{ color: '#718096', fontSize: '0.9rem', marginBottom: '15px' }}>Title/Role</p>
+                <h4 style={{ color: '#2d3748', marginBottom: '10px' }}>Keletso B. Dichaba</h4>
+                <p style={{ color: '#718096', fontSize: '0.9rem', marginBottom: '15px' }}>Co-Host</p>
                 <p style={{ color: '#4a5568', fontSize: '0.95rem', lineHeight: '1.6' }}>
-                  Brief bio and background information about the host will go here.
-                  Their expertise and interests in space science.
+                  I grew up a quiet child, to occupy my time I would read a lot. Overtime my reading led me to ask a lot of questions about a lot of things. From enjoying photos of sunsets, sunrises and stars to wondering   what those stars looked like up close to what happens within them. Now I am A Ph.D. candidate in Computer Science with an MSc specializing in radio astronomy, I am interested in galaxy cluster evolution, machine learning analysis of galaxy populations, and black hole investigations. My MSc research centered on radio emission sources within galaxy clusters, while my current work merges computational techniques and deep learning for automated source detection and classification in astronomy. Stellar populations and the mysteries of black holes captivate my research pursuits. Through innovative applications of machine learning, I strive to uncover celestial secrets and contribute to the realm of automated astronomy. With a firm belief in the synergy of computer science and astronomy, my goal is to advance our comprehension of the cosmos and its elusive phenomena.
                 </p>
               </div>
             </div>

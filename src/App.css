@@ -73,3 +73,27 @@ body {
     max-width: 1320px;
   }
 }
+
+/* App.css */
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  padding-top: 20px; /* Additional padding if needed */
+}
+
+/* Ensure content doesn't get hidden behind fixed navbar */
+@media (max-width: 768px) {
+  body {
+    padding-top: 70px;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}

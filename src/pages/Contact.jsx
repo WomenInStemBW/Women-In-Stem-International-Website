@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import wisLogoRed from "../assets/LOGO2 COPY PNG@300x.png"
+import wisLogoRed from "../assets/LOGO1 PNG@300x.png"
+import telescopePic from "../assets/telescope.jpg"
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -23,7 +24,7 @@ const Contact = () => {
     e.preventDefault();
     console.log('Form submitted:', formData);
     setSubmitted(true);
-    
+
     setTimeout(() => {
       setSubmitted(false);
       setFormData({
@@ -40,10 +41,23 @@ const Contact = () => {
     <>
       <style>{`
         .contact-page {
-          min-height: 100vh;
-          background: linear-gradient(135deg, #faf6f5ff 0%, #d57b7bff 100%);
-          padding: 60px 0;
-        }
+  min-height: 100vh;
+  background: url(${telescopePic}) center/cover no-repeat;
+  padding: 60px 0;
+  position: relative;
+}
+
+// Add a dark overlay for better text contrast
+.contact-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3); // Dark overlay
+  z-index: -1;
+}
 
         .contact-header {
           text-align: center;
@@ -192,105 +206,105 @@ const Contact = () => {
       <div className="contact-page">
         <div className="container">
           <div className="contact-header">
-            <img 
-              src={wisLogoRed} 
-              alt="Women in STEM International Logo" 
+            <img
+              src={wisLogoRed}
+              alt="Women in STEM International Logo"
               className="contact-logo"
             />
             <h1>Contact Us</h1>
             <p>
-              Have questions? We'd love to hear from you. Send us a message and 
+              Have questions? We'd love to hear from you. Send us a message and
               we'll respond as soon as possible.
             </p>
           </div>
 
           <div className="contact-container">
-              <div className="contact-form-wrapper">
-                <h3>Send Us a Message</h3>
-                
-                {submitted && (
-                  <div className="success-message">
-                    ✓ Thank you! Your message has been sent successfully.
-                  </div>
-                )}
+            <div className="contact-form-wrapper">
+              <h3>Send Us a Message</h3>
 
-                <div onSubmit={handleSubmit}>
-                  <div className="form-group">
-                    <label htmlFor="name">Full Name *</label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      className="form-control"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      placeholder="Enter your name"
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <label htmlFor="email">Email Address *</label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      className="form-control"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      placeholder="your.email@example.com"
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <label htmlFor="phone">Phone Number</label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      className="form-control"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      placeholder="+267 12345678"
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <label htmlFor="subject">Subject *</label>
-                    <input
-                      type="text"
-                      id="subject"
-                      name="subject"
-                      className="form-control"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      required
-                      placeholder="What is this regarding?"
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <label htmlFor="message">Message *</label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      className="form-control"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      placeholder="Tell us more about your inquiry..."
-                    ></textarea>
-                  </div>
-
-                  <button type="button" onClick={handleSubmit} className="submit-btn">
-                    Send Message
-                  </button>
+              {submitted && (
+                <div className="success-message">
+                  ✓ Thank you! Your message has been sent successfully.
                 </div>
+              )}
+
+              <div onSubmit={handleSubmit}>
+                <div className="form-group">
+                  <label htmlFor="name">Full Name *</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    className="form-control"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    placeholder="Enter your name"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="email">Email Address *</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    className="form-control"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    placeholder="your.email@example.com"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="phone">Phone Number</label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    className="form-control"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    placeholder="+267 12345678"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="subject">Subject *</label>
+                  <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    className="form-control"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    required
+                    placeholder="What is this regarding?"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="message">Message *</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    className="form-control"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    placeholder="Tell us more about your inquiry..."
+                  ></textarea>
+                </div>
+
+                <button type="button" onClick={handleSubmit} className="submit-btn">
+                  Send Message
+                </button>
               </div>
             </div>
           </div>
         </div>
+      </div>
     </>
   );
 };

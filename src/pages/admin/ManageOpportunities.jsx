@@ -167,6 +167,14 @@ const getTypeColor = (type) => {
     competition: '#667eea',
     internship: '#48bb78',
     conference: '#9f7aea',
+    portal: '#4299e1',
+    mentoring: '#ed8936',
+    community: '#9c4221',
+    professional: '#667eea',
+    advocacy: '#e53e3e',
+    youth: '#d69e2e',
+    scientific: '#319795',
+    stem: '#805ad5',
     default: '#c43c2dff'
   };
   return colors[type?.toLowerCase()] || colors.default;
