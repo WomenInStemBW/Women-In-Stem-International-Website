@@ -1,7 +1,7 @@
 // src/pages/admin/ManageTeamMembers.jsx
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getTeamById, createTeamMember, updateTeamMember, deleteTeamMember } from '../../services/teamService';
+import { getTeamById, createTeamMember, updateTeamMember, deleteTeamMember, uploadTeamMemberImage } from '../../services/teamService';
 
 const ManageTeamMembers = () => {
   const { teamId } = useParams();
@@ -12,6 +12,7 @@ const ManageTeamMembers = () => {
   const [message, setMessage] = useState('');
   const [showAddForm, setShowAddForm] = useState(false);
   const [editingMember, setEditingMember] = useState(null);
+  const [uploading, setUploading] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     role: '',
@@ -46,6 +47,45 @@ const ManageTeamMembers = () => {
     }));
   };
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      // Validate file type
+      if (!file.type.startsWith('image/')) {
+        setMessage('Please select a valid image file');
+        return;
+      }
+      
+      // Validate file size (e.g., 5MB max)
+      if (file.size > 5 * 1024 * 1024) {
+        setMessage('Image size should be less than 5MB');
+        return;
+      }
+      
+      handleImageUpload(file);
+    }
+  };
+
+  const handleImageUpload = async (file) => {
+    setUploading(true);
+    try {
+      const { data, error } = await uploadTeamMemberImage(file);
+      if (error) throw error;
+      setFormData(prev => ({ ...prev, image_url: data.url }));
+      setMessage('Image uploaded successfully!');
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      setMessage('Error uploading image');
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const handleRemoveImage = () => {
+    setFormData(prev => ({ ...prev, image_url: '' }));
+    setMessage('Image removed');
+  };
+
   const resetForm = () => {
     setFormData({
       name: '',
@@ -55,6 +95,7 @@ const ManageTeamMembers = () => {
     });
     setEditingMember(null);
     setShowAddForm(false);
+    setUploading(false);
   };
 
   const handleAddMember = async (e) => {
@@ -228,19 +269,43 @@ const ManageTeamMembers = () => {
                     />
                   </div>
 
+                  {/* Image Upload Section - NEW */}
                   <div className="mb-3">
-                    <label className="form-label">Image URL</label>
+                    <label className="form-label">Team Member Image</label>
                     <input
-                      type="url"
-                      name="image_url"
-                      value={formData.image_url}
-                      onChange={handleFormChange}
+                      type="file"
                       className="form-control"
-                      placeholder="https://example.com/image.jpg"
+                      accept="image/*"
+                      onChange={handleFileChange}
+                      disabled={uploading}
                     />
+                    {uploading && (
+                      <div className="form-text text-primary">
+                        <div className="spinner-border spinner-border-sm me-2" />
+                        Uploading image...
+                      </div>
+                    )}
                     <div className="form-text">
-                      Optional: Provide a URL to the member's profile picture
+                      Supported formats: JPG, PNG, GIF. Max size: 5MB
                     </div>
+                    {formData.image_url && (
+                      <div className="mt-2">
+                        <img 
+                          src={formData.image_url} 
+                          alt="Team member preview" 
+                          style={{ width: '150px', height: '150px', objectFit: 'cover', borderRadius: '8px' }}
+                        />
+                        <div>
+                          <button 
+                            type="button" 
+                            className="btn btn-sm btn-outline-danger mt-1"
+                            onClick={handleRemoveImage}
+                          >
+                            Remove Image
+                          </button>
+                        </div>
+                      </div>
+                    )}
                   </div>
 
                   <div className="d-flex gap-2">
@@ -277,16 +342,41 @@ const ManageTeamMembers = () => {
                   <table className="table table-striped">
                     <thead>
                       <tr>
+                        <th>Image</th>
                         <th>Name</th>
                         <th>Role</th>
                         <th>Bio</th>
-                        <th>Image</th>
                         <th>Actions</th>
                       </tr>
                     </thead>
                     <tbody>
                       {members.map((member) => (
                         <tr key={member.id}>
+                          <td>
+                            {member.image_url ? (
+                              <img 
+                                src={member.image_url} 
+                                alt={member.name}
+                                style={{ width: '50px', height: '50px', objectFit: 'cover', borderRadius: '50%' }}
+                              />
+                            ) : (
+                              <div 
+                                style={{ 
+                                  width: '50px', 
+                                  height: '50px', 
+                                  backgroundColor: '#f8f9fa', 
+                                  borderRadius: '50%',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  color: '#6c757d',
+                                  fontSize: '12px'
+                                }}
+                              >
+                                No Image
+                              </div>
+                            )}
+                          </td>
                           <td>
                             <strong>{member.name}</strong>
                           </td>
@@ -295,13 +385,6 @@ const ManageTeamMembers = () => {
                             {member.bio && member.bio.length > 50 
                               ? `${member.bio.substring(0, 50)}...` 
                               : member.bio || '-'}
-                          </td>
-                          <td>
-                            {member.image_url ? (
-                              <span className="badge bg-success">Yes</span>
-                            ) : (
-                              <span className="badge bg-secondary">No</span>
-                            )}
                           </td>
                           <td>
                             <div className="btn-group">

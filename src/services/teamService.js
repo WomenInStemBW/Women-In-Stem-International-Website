@@ -185,3 +185,54 @@ export const deleteTeamMember = async (id) => {
     return { data: null, error };
   }
 };
+
+// Add this to teamService.js
+// Upload image to Supabase Storage
+export const uploadImage = async (file) => {
+  try {
+    const fileExt = file.name.split('.').pop();
+    const fileName = `${Math.random().toString(36).substring(2)}-${Date.now()}.${fileExt}`;
+    const filePath = `team-member-images/${fileName}`;
+
+    const { data, error } = await supabase.storage
+      .from('WomenInStem-Blog')
+      .upload(filePath, file);
+
+    if (error) throw error;
+
+    // Get public URL
+    const { data: { publicUrl } } = supabase.storage
+      .from('WomenInStem-Blog')
+      .getPublicUrl(filePath);
+
+    return { data: { url: publicUrl }, error: null };
+  } catch (error) {
+    console.error('Error uploading image:', error);
+    return { data: null, error };
+  }
+};
+
+// Add this to teamService.js - Upload image for team members
+export const uploadTeamMemberImage = async (file) => {
+  try {
+    const fileExt = file.name.split('.').pop();
+    const fileName = `${Math.random().toString(36).substring(2)}-${Date.now()}.${fileExt}`;
+    const filePath = `team-member-images/${fileName}`;
+
+    const { data, error } = await supabase.storage
+      .from('WomenInStem-Blog')
+      .upload(filePath, file);
+
+    if (error) throw error;
+
+    // Get public URL
+    const { data: { publicUrl } } = supabase.storage
+      .from('WomenInStem-Blog')
+      .getPublicUrl(filePath);
+
+    return { data: { url: publicUrl }, error: null };
+  } catch (error) {
+    console.error('Error uploading team member image:', error);
+    return { data: null, error };
+  }
+};
