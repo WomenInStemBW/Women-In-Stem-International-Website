@@ -196,50 +196,7 @@ const AstroSpace = () => {
             </div>
 
             {/* Host 2 */}
-            <div className="col-md-4">
-              <div style={{ background: 'white', padding: '30px', borderRadius: '10px', boxShadow: '0 2px 10px rgba(0,0,0,0.1)', textAlign: 'center', height: '100%' }}>
-                <div style={{
-                  width: '120px',
-                  height: '120px',
-                  borderRadius: '50%',
-                  margin: '0 auto 20px',
-                  overflow: 'hidden',
-                  border: '4px solid #667eea'
-                }}>
-                  <img
-                    src={keletsoPic}
-                    alt="Host Name 2"
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover'
-                    }}
-                    onError={(e) => {
-                      e.target.style.display = 'none';
-                      e.target.nextSibling.style.display = 'flex';
-                    }}
-                  />
-                  <div style={{
-                    display: 'none',
-                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                    width: '100%',
-                    height: '100%',
-                    borderRadius: '50%',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '2rem',
-                    color: 'white'
-                  }}>
-                    👤
-                  </div>
-                </div>
-                <h4 style={{ color: '#2d3748', marginBottom: '10px' }}>Keletso B. Dichaba</h4>
-                <p style={{ color: '#718096', fontSize: '0.9rem', marginBottom: '15px' }}>Co-Host</p>
-                <p style={{ color: '#4a5568', fontSize: '0.95rem', lineHeight: '1.6' }}>
-                  I grew up a quiet child, to occupy my time I would read a lot. Overtime my reading led me to ask a lot of questions about a lot of things. From enjoying photos of sunsets, sunrises and stars to wondering   what those stars looked like up close to what happens within them. Now I am A Ph.D. candidate in Computer Science with an MSc specializing in radio astronomy, I am interested in galaxy cluster evolution, machine learning analysis of galaxy populations, and black hole investigations. My MSc research centered on radio emission sources within galaxy clusters, while my current work merges computational techniques and deep learning for automated source detection and classification in astronomy. Stellar populations and the mysteries of black holes captivate my research pursuits. Through innovative applications of machine learning, I strive to uncover celestial secrets and contribute to the realm of automated astronomy. With a firm belief in the synergy of computer science and astronomy, my goal is to advance our comprehension of the cosmos and its elusive phenomena.
-                </p>
-              </div>
-            </div>
+            
           </div>
         </div>
       </div>

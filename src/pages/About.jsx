@@ -1,5 +1,7 @@
 import React from 'react';
 import wisLogoRed from "../assets/LOGO2 COPY PNG@300x.png"
+import starsPic from "../assets/stars.jpg";
+import galaxyPic from "../assets/galaxy.jpg";
 
 // Import all partner images
 import biustImage from "../assets/biust.png";
@@ -23,8 +25,10 @@ const About = () => {
   return (
     <>
       <style>{`
+
+        
         .about-hero {
-          background: linear-gradient(135deg, #ea8966ff 0%, #a2544bff 100%);
+          background: url(${starsPic}) center/cover no-repeat;
           color: white;
           padding: 60px 0;
           margin-bottom: 40px;
@@ -53,15 +57,15 @@ const About = () => {
         }
 
         .section-title {
-          color: #c43c2dff;
+          color: #071654ff;
           font-weight: bold;
           margin-bottom: 20px;
-          border-left: 4px solid #ea8766ff;
+          border-left: 4px solid #6866eaff;
           padding-left: 15px;
         }
 
         .motto-box {
-          background: linear-gradient(135deg, #ea8966ff 0%, #a2544bff 100%);
+          background: url(${galaxyPic}) 80% center/cover no-repeat;
           color: white;
           padding: 30px;
           border-radius: 10px;
@@ -195,7 +199,7 @@ const About = () => {
               <h2 className="section-title">Core Values</h2>
               <div className="values-card">
                 <h5 className="fw-bold mb-2">🚀 Driving Change</h5>
-                <p className="mb-0">We are committed to creating meaningful impact and transformation in STEM education.</p>
+                <p className="mb-0">We are committed to creating meaningful impact and transformation in STEM, Astronomy and Space education.</p>
               </div>
               <div className="values-card">
                 <h5 className="fw-bold mb-2">🌍 Global Community & Collaboration</h5>
@@ -255,10 +259,10 @@ const About = () => {
                 <img src={afasImage} alt="AFAS Partner Logo" />
               </div>
               <div className="partner-logo">
-                <img src={cumbresImage} alt="Las Cumbres Observatory Partner Logo" />
+                <img src={timeEducationImage} alt="Time Education Partner Logo" />
               </div>
               <div className="partner-logo">
-                <img src={papssnImage} alt="PAPSSN Partner Logo" />
+                <img src={daraImage} alt="DARA" />
               </div>
               <div className="partner-logo">
                 <img src={scienceImage} alt="Science Partner Logo" />
@@ -273,7 +277,13 @@ const About = () => {
                 <img src={iauImage} alt="International Astronomical Union Logo" />
               </div>
               <div className="partner-logo">
-                <img src={daraImage} alt="DARA" />
+                <img src={spaceGenerationImage} alt="Space Generation Partner Logo" />
+              </div>
+              <div className="partner-logo">
+                <img src={cumbresImage} alt="Las Cumbres Observatory Partner Logo" />
+              </div>
+              <div className="partner-logo">
+                <img src={papssnImage} alt="PAPSSN Partner Logo" />
               </div>
               <div className="partner-logo">
                 <img src={starlightImage} alt="Starlight Education Partner Logo" />
@@ -286,12 +296,6 @@ const About = () => {
               </div>
               <div className="partner-logo">
                 <img src={issetImage} alt="ISSET Partner Logo" />
-              </div>
-              <div className="partner-logo">
-                <img src={timeEducationImage} alt="Time Education Partner Logo" />
-              </div>
-              <div className="partner-logo">
-                <img src={spaceGenerationImage} alt="Space Generation Partner Logo" />
               </div>
 
               <div className="text-center mt-4">

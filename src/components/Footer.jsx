@@ -123,13 +123,14 @@ const Footer = () => {
               </p>
               <div className="social-links">
                 <a 
+                
                   href="https://www.youtube.com/channel/UCpEgbMPKAxBdu0CvHZ7jgVg" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="social-link"
                   aria-label="YouTube"
                 >
-                  ▶
+                  <img width="48" height="48" src="https://img.icons8.com/color/48/youtube-play.png" alt="youtube-play"/>
                 </a>
                 <a 
                   href="https://www.facebook.com/womeninstembw/?_rdr" 
@@ -138,7 +139,7 @@ const Footer = () => {
                   className="social-link"
                   aria-label="Facebook"
                 >
-                  f
+                  <img width="48" height="48" src="https://img.icons8.com/fluency/48/facebook-new.png" alt="facebook-new"/>
                 </a>
                 <a 
                   href="https://www.instagram.com/women_in_stem_bw" 
@@ -147,7 +148,7 @@ const Footer = () => {
                   className="social-link"
                   aria-label="Instagram"
                 >
-                  📷
+                  <img width="48" height="48" src="https://img.icons8.com/fluency/48/instagram-new.png" alt="instagram-new"/>
                 </a>
               </div>
             </div>
@@ -158,7 +159,7 @@ const Footer = () => {
               <address>
                 <strong>Address:</strong><br />
                 BIUST, Physics & Astronomy Dept.<br />
-                Plot 1088, Private Bag 16<br />
+                Plot 10071<br />
                 Palapye, Botswana
               </address>
               <p>
@@ -169,7 +170,6 @@ const Footer = () => {
                 tumok@wisbw.org<br />
                 enqueries@wisbw.org<br />
                 astrowis2018@gmail.com <br />
-                womeninsteminternational@gmail.com
               </p>
             </div>
 
@@ -179,7 +179,7 @@ const Footer = () => {
               <ul className="hours-list">
                 <li>
                   <strong>Monday – Friday</strong><br />
-                  9:00 AM – 5:00 PM
+                  9:00 AM – 4:00 PM
                 </li>
                 <li>
                   <strong>Saturday & Sunday</strong><br />
