@@ -1,6 +1,7 @@
 // src/pages/News.jsx
 import React, { useState, useEffect } from 'react';
 import { getAllGroupsWithOpportunities } from '../services/opportunityService';
+import communityPic from "../assets/community.jpg";
 
 const Opportunities = () => {
   const [groups, setGroups] = useState([]);
@@ -69,14 +70,50 @@ const Opportunities = () => {
   return (
     <div style={{ padding: '60px 0', minHeight: '100vh', background: '#f8f9fa' }}>
       <div className="container">
-        <div style={{ textAlign: 'center', marginBottom: '50px' }}>
-          <h1 style={{ fontSize: '2.5rem', fontWeight: 'bold', color: '#2d3748', marginBottom: '15px' }}>
-            Opportunities
-          </h1>
-          <p style={{ fontSize: '1.1rem', color: '#718096', maxWidth: '700px', margin: '0 auto' }}>
-            Discover the latest opportunities in STEM, Astronomy, and Space industries.
-          </p>
-        </div>
+        <div style={{
+                  textAlign: 'center',
+                  marginBottom: '50px',
+                  backgroundImage: `url(${communityPic})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat',
+                  padding: '80px 20px',
+                  borderRadius: '10px',
+                  position: 'relative'
+                }}>
+                  {/* Overlay for better text readability */}
+                  <div style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+                    borderRadius: '10px'
+                  }}></div>
+        
+                  {/* Content */}
+                  <div style={{ position: 'relative', zIndex: 1 }}>
+                    <h1 style={{
+                      fontSize: '2.5rem',
+                      fontWeight: 'bold',
+                      color: 'white',
+                      marginBottom: '15px',
+                      textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
+                    }}>
+                      Opportunities
+                    </h1>
+                    <p style={{
+                      fontSize: '1.1rem',
+                      color: 'white',
+                      maxWidth: '700px',
+                      margin: '0 auto',
+                      textShadow: '1px 1px 2px rgba(0,0,0,0.5)'
+                    }}>
+                      Discover the latest opportunities in STEM, Astronomy, and Space industries.
+                    </p>
+                  </div>
+                </div>
 
         {view === 'groups' && (
           <div>

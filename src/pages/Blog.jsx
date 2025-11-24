@@ -1,11 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import { getAllPublishedPosts } from '../services/blogService';
+import girlPic from "../assets/girl_background.jpg";
 
 const Blog = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0); // Add this line
-  const postsPerPage = 3; // Add this line
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 10;
+
+  // Calculate posts to display
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+  const totalPages = Math.ceil(posts.length / postsPerPage);
+
+  // Pagination functions
+  const nextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const prevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const goToPage = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   useEffect(() => {
     loadPosts();
@@ -27,10 +53,10 @@ const Blog = () => {
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric' 
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
     });
   };
 
@@ -41,20 +67,85 @@ const Blog = () => {
   };
 
   const nextSlide = () => {
-  setCurrentIndex((prevIndex) => 
-    prevIndex + postsPerPage >= posts.length ? 0 : prevIndex + postsPerPage
-  );
-};
+    setCurrentIndex((prevIndex) =>
+      prevIndex + postsPerPage >= posts.length ? 0 : prevIndex + postsPerPage
+    );
+  };
 
-const prevSlide = () => {
-  setCurrentIndex((prevIndex) => 
-    prevIndex - postsPerPage < 0 ? posts.length - postsPerPage : prevIndex - postsPerPage
-  );
-};
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex - postsPerPage < 0 ? posts.length - postsPerPage : prevIndex - postsPerPage
+    );
+  };
 
   return (
     <>
       <style>{`
+
+      .blog-vertical {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        max-width: 100%;
+        text-align: left;
+      }
+
+      .blog-card-vertical {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        text-align: left;
+      }
+
+      .blog-card-vertical:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+      }
+
+      .blog-card-image-vertical {
+        width: 300px;
+        height: 200px;
+        object-fit: cover;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 3rem;
+        flex-shrink: 0;
+      }
+
+      .blog-card-image-vertical img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .blog-card-content-vertical {
+        padding: 25px;
+        flex: 1;
+        text-align: left;
+      }
+
+      @media (max-width: 768px) {
+        .blog-card-vertical {
+          flex-direction: column;
+          text-align: left;
+        }
+  
+        .blog-card-image-vertical {
+            width: 100%;
+            height: 220px;
+          }
+        }
 
         .carousel-controls {
             display: flex;
@@ -256,15 +347,110 @@ const prevSlide = () => {
             grid-template-columns: 1fr;
           }
         }
+
+        .pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.pagination-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #667eea;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pagination-btn:disabled {
+  background: #cbd5e0;
+  cursor: not-allowed;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background: #5a67d8;
+  transform: translateY(-2px);
+}
+
+.pagination-numbers {
+  display: flex;
+  gap: 8px;
+}
+
+.pagination-number {
+  padding: 8px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pagination-number.active {
+  background: #667eea;
+  color: white;
+  border-color: #667eea;
+}
+
+.pagination-number:hover:not(.active) {
+  background: #f7fafc;
+  border-color: #667eea;
+}
       `}</style>
 
       <div className="blog-page">
         <div className="container">
-          <div className="blog-header">
-            <h1 className="blog-title">Our Blog</h1>
-            <p className="blog-subtitle">
-              Stay updated with the latest news, insights, and stories from Women in STEM
-            </p>
+          <div style={{
+            textAlign: 'center',
+            marginBottom: '50px',
+            backgroundImage: `url(${girlPic})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            padding: '80px 20px',
+            borderRadius: '10px',
+            position: 'relative'
+          }}>
+            {/* Overlay for better text readability */}
+            <div style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: 'rgba(0, 0, 0, 0.4)',
+              borderRadius: '10px'
+            }}></div>
+
+            {/* Content */}
+            <div style={{ position: 'relative', zIndex: 1 }}>
+              <h1 style={{
+                fontSize: '2.5rem',
+                fontWeight: 'bold',
+                color: 'white',
+                marginBottom: '15px',
+                textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
+              }}>
+                Our Blog
+              </h1>
+              <p style={{
+                fontSize: '1.1rem',
+                color: 'white',
+                maxWidth: '700px',
+                margin: '0 auto',
+                textShadow: '1px 1px 2px rgba(0,0,0,0.5)'
+              }}>
+                Stay updated with the latest news, insights, and stories from Women in STEM
+              </p>
+            </div>
+          </div>
+          <div>
+            <h1>Latest Blogs</h1>
           </div>
 
           {loading ? (
@@ -277,23 +463,24 @@ const prevSlide = () => {
               <h3>No blog posts yet</h3>
               <p>Check back soon for exciting content!</p>
             </div>
+
           ) : (
-            <div className="blog-grid">
-              {posts.slice(currentIndex, currentIndex + postsPerPage).map((post) => (
-                <a 
-                  href={`/blog/${post.slug}`} 
+            <div className="blog-vertical">
+              {currentPosts.map((post) => (
+                <a
+                  href={`/blog/${post.slug}`}
                   key={post.id}
-                  className="blog-card"
+                  className="blog-card-vertical"
                 >
-                  <div className="blog-card-image">
+                  <div className="blog-card-image-vertical">
                     {post.cover_image ? (
                       <img src={post.cover_image} alt={post.title} />
                     ) : (
                       '📝'
                     )}
                   </div>
-                  
-                  <div className="blog-card-content">
+
+                  <div className="blog-card-content-vertical">
                     <div className="blog-card-meta">
                       {post.category && (
                         <span className="blog-card-category">{post.category}</span>
@@ -302,7 +489,7 @@ const prevSlide = () => {
                     </div>
 
                     <h3 className="blog-card-title">{post.title}</h3>
-                    
+
                     <p className="blog-card-excerpt">
                       {post.excerpt || stripHtml(post.content).substring(0, 150) + '...'}
                     </p>
@@ -321,13 +508,33 @@ const prevSlide = () => {
             </div>
           )}
           {posts.length > postsPerPage && (
-            console.log('Rendering carousel controls'),
-            <div className="carousel-controls">
-              <button className="carousel-btn prev-btn" onClick={prevSlide}>
-                ‹
+            <div className="pagination-controls">
+              <button
+                className="pagination-btn"
+                onClick={prevPage}
+                disabled={currentPage === 1}
+              >
+                Previous
               </button>
-              <button className="carousel-btn next-btn" onClick={nextSlide}>
-                ›
+
+              <div className="pagination-numbers">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                  <button
+                    key={page}
+                    className={`pagination-number ${currentPage === page ? 'active' : ''}`}
+                    onClick={() => goToPage(page)}
+                  >
+                    {page}
+                  </button>
+                ))}
+              </div>
+
+              <button
+                className="pagination-btn"
+                onClick={nextPage}
+                disabled={currentPage === totalPages}
+              >
+                Next
               </button>
             </div>
           )}
