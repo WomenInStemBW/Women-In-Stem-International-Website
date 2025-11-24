@@ -1,25 +1,25 @@
 import React from 'react';
 import wisLogoRed from "../assets/LOGO2 COPY PNG@300x.png"
-import starsPic from "../assets/stars.jpg";
-import galaxyPic from "../assets/galaxy.jpg";
+import starsPic from "../assets/stars.webp";
+import galaxyPic from "../assets/galaxy.webp";
 
 // Import all partner images
-import biustImage from "../assets/biust.png";
-import basicEducationImage from "../assets/basic_education.jpg";
-import afasImage from "../assets/afas.png";
-import cumbresImage from "../assets/cumbres_observation.jpg";
-import papssnImage from "../assets/papssn.png";
-import scienceImage from "../assets/science_logo.jpg";
-import oadImage from "../assets/oad.png";
-import oaeImage from "../assets/oae.png";
-import iauImage from "../assets/iau.jpg";
-import daraImage from "../assets/dara.png";
-import starlightImage from "../assets/starlight_education.png";
-import ssviImage from "../assets/ssvi.jpg";
-import stemiImage from "../assets/stemi.png";
-import issetImage from "../assets/isset.jpg";
-import timeEducationImage from "../assets/time_education.png";
-import spaceGenerationImage from "../assets/space_generation.png";
+import biustImage from "../assets/biust.webp";
+import basicEducationImage from "../assets/basic_education.webp";
+import afasImage from "../assets/afas.webp";
+import cumbresImage from "../assets/cumbres_observation.webp";
+import papssnImage from "../assets/papssn.webp";
+import scienceImage from "../assets/science_logo.webp";
+import oadImage from "../assets/oad.webp";
+import oaeImage from "../assets/oae.webp";
+import iauImage from "../assets/iau.webp";
+import daraImage from "../assets/dara.webp";
+import starlightImage from "../assets/starlight_education.webp";
+import ssviImage from "../assets/ssvi.webp";
+import stemiImage from "../assets/stemi.webp";
+import issetImage from "../assets/isset.webp";
+import timeEducationImage from "../assets/time_education.webp";
+import spaceGenerationImage from "../assets/space_generation.webp";
 
 const About = () => {
   return (
@@ -159,6 +159,8 @@ const About = () => {
       </div>
 
       {/* Main Content */}
+      <div className="container about-section px-3 px-md-0">
+        {/* Main Content */}
       <div className="container about-section">
         <div className="row">
           {/* Left Column - Main Content */}
@@ -306,6 +308,7 @@ const About = () => {
             </div>
           </div>
         </div>
+      </div>
       </div>
 
       {/* Bottom spacing */}

@@ -1,9 +1,9 @@
 import React from 'react';
-import wisLogoBlue from "../assets/LOGO1 COPY PNG@300x.png";
-import nasaBackground from "../assets/nasa-background.jpg";
-import labBackground from "../assets/lab.jpg";
-import scienceBackground from "../assets/science.jpg";
-import podcastBackground from "../assets/podcast.jpg";
+import wisLogoBlue from "../assets/LOGO2 PNG@300x.png";
+import nasaBackground from "../assets/nasa-background.webp";
+import labBackground from "../assets/lab.webp";
+import scienceBackground from "../assets/science.webp";
+import podcastBackground from "../assets/podcast.webp";
 
 const Home = () => {
   return (
@@ -13,7 +13,7 @@ const Home = () => {
           background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), url(${nasaBackground});
           background-size: cover;
           background-position: center;
-          background-attachment: fixed;
+          background-attachment: scroll;
           min-height: 100vh;
           display: flex;
           align-items: center;
@@ -244,7 +244,7 @@ const Home = () => {
                 color: '#2d3748', 
                 marginBottom: '20px' 
               }}>
-                Advancing Africa's Space Science & Technology Across Generations
+                Advancing Africa's Next Space Generation
               </h2>
               <p style={{ 
                 fontSize: '1.1rem', 
@@ -280,7 +280,6 @@ const Home = () => {
         backgroundImage: `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${labBackground})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        backgroundAttachment: 'fixed',
         padding: '80px 0',
         color: 'white'
       }}>
@@ -338,7 +337,7 @@ const Home = () => {
                 Find scholarships, internships, workshops, and career opportunities in STEM 
                 and Space industries. Take the next step in your professional journey.
               </p>
-              <a href="/news" className="hero-btn" style={{
+              <a href="/opportunities" className="hero-btn" style={{
                 background: 'rgba(255,255,255,0.2)',
                 color: 'white',
                 border: '2px solid white',

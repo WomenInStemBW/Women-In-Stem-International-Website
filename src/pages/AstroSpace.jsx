@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getAllPublishedEpisodes } from '../services/podcastService';
-import tumpPic from "../assets/tumo.jpg"
-import keletsoPic from "../assets/keletso.jpg"
+import tumpPic from "../assets/tumo.webp"
 
 const AstroSpace = () => {
   const [episodes, setEpisodes] = useState([]);
@@ -188,7 +187,7 @@ const AstroSpace = () => {
                   </div>
                 </div>
                 <h4 style={{ color: '#2d3748', marginBottom: '10px' }}>Tumo Fortunate Kedumele</h4>
-                <p style={{ color: '#718096', fontSize: '0.9rem', marginBottom: '15px' }}>Founder/Host</p>
+                <p style={{ color: '#718096', fontSize: '0.9rem', marginBottom: '15px' }}>Astronomy and Engineering Researcher</p>
                 <p style={{ color: '#4a5568', fontSize: '0.95rem', lineHeight: '1.6' }}>
                   I have always been interested in STEM subjects from a young age, I was also passionate about astronomy and fascinated by space technology. During varsity years I was mostly drawn to space communication, particularly satellites, cubesats, radio and microwave engineering. Venturing into the astronomy field gave me an opportunity to work with radio communication, instrumentation and astronomy in radio astronomy research.
                 </p>

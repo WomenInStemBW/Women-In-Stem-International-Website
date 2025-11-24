@@ -11,6 +11,7 @@ const Teams = () => {
     fetchTeams();
   }, []);
 
+
   const fetchTeams = async () => {
     try {
       const { data, error } = await getAllTeamsWithMembers();
@@ -33,10 +34,12 @@ const Teams = () => {
 
   // Get all team members from all teams
   const allMembers = teams.flatMap(team =>
-    (team.members || []).map(member => ({
-      ...member,
-      teamName: team.name
-    }))
+    (team.members || [])
+      .map(member => ({
+        ...member,
+        teamName: team.name
+      }))
+      .sort((a, b) => (a.position || 0) - (b.position || 0))
   );
 
   return (

@@ -2,7 +2,7 @@
 
 import { supabase } from './supabaseClient';
 
-// Get all teams with their members
+// Get all teams with their members (updated to include position)
 export const getAllTeamsWithMembers = async () => {
   try {
     // First get all teams
@@ -17,14 +17,16 @@ export const getAllTeamsWithMembers = async () => {
     const { data: members, error: membersError } = await supabase
       .from('team_members')
       .select('*')
-      .order('name');
+      .order('position'); // Order by position
 
     if (membersError) throw membersError;
 
     // Combine teams with their members
     const teamsWithMembers = teams.map(team => ({
       ...team,
-      members: members.filter(member => member.team_id === team.id)
+      members: members
+        .filter(member => member.team_id === team.id)
+        .sort((a, b) => (a.position || 0) - (b.position || 0))
     }));
 
     return { data: teamsWithMembers, error: null };
@@ -34,7 +36,7 @@ export const getAllTeamsWithMembers = async () => {
   }
 };
 
-// Get single team by ID with members
+// Get single team by ID with members (updated to include position)
 export const getTeamById = async (id) => {
   try {
     // Get team
@@ -46,12 +48,12 @@ export const getTeamById = async (id) => {
 
     if (teamError) throw teamError;
 
-    // Get team members
+    // Get team members ordered by position
     const { data: members, error: membersError } = await supabase
       .from('team_members')
       .select('*')
       .eq('team_id', id)
-      .order('name');
+      .order('position');
 
     if (membersError) throw membersError;
 
@@ -124,7 +126,7 @@ export const deleteTeam = async (id) => {
   }
 };
 
-// Create team member
+// Create team member with position
 export const createTeamMember = async (memberData) => {
   try {
     const newMember = {
@@ -233,6 +235,32 @@ export const uploadTeamMemberImage = async (file) => {
     return { data: { url: publicUrl }, error: null };
   } catch (error) {
     console.error('Error uploading team member image:', error);
+    return { data: null, error };
+  }
+};
+
+// Update team member order
+export const updateTeamMemberOrder = async (teamId, memberOrders) => {
+  try {
+    // Update each member's position
+    const updates = memberOrders.map(({ id, position }) => 
+      supabase
+        .from('team_members')
+        .update({ 
+          position: position, 
+          updated_at: new Date().toISOString() 
+        })
+        .eq('id', id)
+    );
+
+    const results = await Promise.all(updates);
+    const errors = results.filter(result => result.error);
+    
+    if (errors.length > 0) throw errors[0].error;
+    
+    return { data: { success: true }, error: null };
+  } catch (error) {
+    console.error('Error updating team member order:', error);
     return { data: null, error };
   }
 };
