@@ -33,6 +33,7 @@ import ManageTeamMembers from './pages/admin/ManageTeamMembers';
 import ManageGroups from './pages/admin/ManageGroups';
 import CreateGroup from './pages/admin/CreateGroup';
 import EditGroup from './pages/admin/EditGroup';
+import ManageContacts from './pages/admin/ManageContacts';
 
 // Import new opportunity pages
 import CreateOpportunity from './pages/admin/CreateOpportunity';
@@ -211,6 +212,15 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <EditGroup />
+                  </ProtectedRoute>
+                }
+              />
+
+              <Route
+                path="/admin/contacts"
+                element={
+                  <ProtectedRoute>
+                    <ManageContacts />
                   </ProtectedRoute>
                 }
               />

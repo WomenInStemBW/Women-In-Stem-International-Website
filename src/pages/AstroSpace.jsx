@@ -92,52 +92,109 @@ const AstroSpace = () => {
             <p style={{ color: '#718096', textAlign: 'center' }}>No episodes available yet. Check back soon!</p>
           ) : (
             <div className="row g-4">
-              {episodes.map((episode) => (
-                <div key={episode.id} className="col-md-6 col-lg-4">
-                  <div style={{
-                    background: '#f8f9fa',
-                    padding: '25px',
-                    borderRadius: '10px',
-                    border: '1px solid #e2e8f0',
-                    height: '100%'
-                  }}>
-                    <div style={{
-                      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                      color: 'white',
-                      padding: '5px 15px',
-                      borderRadius: '5px',
-                      display: 'inline-block',
-                      marginBottom: '15px',
-                      fontSize: '0.85rem',
-                      fontWeight: '600'
-                    }}>
-                      Episode {episode.episode_number}
-                    </div>
-                    <h4 style={{ color: '#2d3748', marginBottom: '15px' }}>{episode.title}</h4>
-                    <p style={{ color: '#4a5568', fontSize: '0.95rem', lineHeight: '1.6', marginBottom: '20px' }}>
-                      {episode.description}
-                    </p>
-                    {episode.spotify_url && (
-                      <a
-                        href={episode.spotify_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{
-                          color: '#c43c2dff',
-                          textDecoration: 'none',
-                          fontWeight: '600',
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          gap: '5px'
-                        }}
-                      >
-                        🎧 Listen Now →
-                      </a>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
+  {episodes.map((episode) => (
+    <div key={episode.id} className="col-md-6 col-lg-4">
+      <div style={{
+        background: 'white',
+        borderRadius: '10px',
+        overflow: 'hidden',
+        border: '1px solid #e2e8f0',
+        height: '100%',
+        boxShadow: '0 2px 10px rgba(0,0,0,0.08)'
+      }}>
+        {/* IMAGE SECTION - MADE LONGER */}
+        {episode.episode_image ? (
+          <div style={{
+            width: '100%',
+            height: '500px', // Increased from 200px to 280px
+            overflow: 'hidden'
+          }}>
+            <img 
+              src={episode.episode_image} 
+              alt={episode.title}
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover'
+              }}
+            />
+          </div>
+        ) : (
+          <div style={{
+            width: '100%',
+            height: '500px', // Increased from 200px to 280px
+            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '4rem'
+          }}>
+            🎙️
+          </div>
+        )}
+        
+        {/* CONTENT SECTION */}
+        <div style={{ padding: '25px' }}>
+          <div style={{
+            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            color: 'white',
+            padding: '5px 15px',
+            borderRadius: '5px',
+            display: 'inline-block',
+            marginBottom: '15px',
+            fontSize: '0.85rem',
+            fontWeight: '600'
+          }}>
+            Episode {episode.episode_number}
+          </div>
+          
+          <h4 style={{ color: '#2d3748', marginBottom: '10px' }}>
+            {episode.title}
+          </h4>
+          
+          {/* SPEAKER INFO */}
+          {episode.speaker && (
+            <p style={{ 
+              color: '#718096', 
+              fontSize: '1.1rem', 
+              marginBottom: '15px',
+              fontStyle: 'italic'
+            }}>
+              🎤 {episode.speaker}
+            </p>
+          )}
+          
+          <p style={{ 
+            color: '#4a5568', 
+            fontSize: '0.95rem', 
+            lineHeight: '1.6', 
+            marginBottom: '20px' 
+          }}>
+            {episode.description}
+          </p>
+          
+          {episode.spotify_url && (
+            <a
+              href={episode.spotify_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: '#c43c2dff',
+                textDecoration: 'none',
+                fontWeight: '600',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '5px'
+              }}
+            >
+              🎧 Listen Now →
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
           )}
         </div>
 
@@ -161,7 +218,7 @@ const AstroSpace = () => {
                 }}>
                   <img
                     src={tumpPic}
-                    alt="Host Name 1"
+                    alt="Tumo Fortunate Kedumele"
                     style={{
                       width: '100%',
                       height: '100%',
@@ -169,20 +226,24 @@ const AstroSpace = () => {
                     }}
                     onError={(e) => {
                       e.target.style.display = 'none';
-                      e.target.nextSibling.style.display = 'flex';
+                      const fallback = e.target.parentElement.querySelector('.host-fallback');
+                      if (fallback) fallback.style.display = 'flex';
                     }}
                   />
-                  <div style={{
-                    display: 'none',
-                    background: 'linear-gradient(135deg, #ea8966ff 0%, #a2544bff 100%)',
-                    width: '100%',
-                    height: '100%',
-                    borderRadius: '50%',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '2rem',
-                    color: 'white'
-                  }}>
+                  <div 
+                    className="host-fallback"
+                    style={{
+                      display: 'none',
+                      background: 'linear-gradient(135deg, #ea8966ff 0%, #a2544bff 100%)',
+                      width: '100%',
+                      height: '100%',
+                      borderRadius: '50%',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '2rem',
+                      color: 'white'
+                    }}
+                  >
                     👤
                   </div>
                 </div>
@@ -194,7 +255,7 @@ const AstroSpace = () => {
               </div>
             </div>
 
-            {/* Host 2 */}
+            {/* Add more host sections here as needed */}
             
           </div>
         </div>

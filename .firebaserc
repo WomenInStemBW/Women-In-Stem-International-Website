@@ -1,5 +1,15 @@
 {
   "projects": {
     "default": "women-in-stem-web"
-  }
+  },
+  "targets": {
+    "women-in-stem-web": {
+      "hosting": {
+        "custom-domain": [
+          "women-in-stem-web"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }

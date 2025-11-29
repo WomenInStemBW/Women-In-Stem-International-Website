@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import wisLogoRed from "../assets/LOGO1 PNG@300x.png"
-import telescopePic from "../assets/telescope.jpg"
-
+import telescopePic from "../assets/telescope.webp"
+import { submitContactForm } from '../services/contactService';
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -20,11 +20,23 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    setSubmitted(true);
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  setSubmitted(true);
 
+  try {
+    const { data, error } = await submitContactForm(formData);
+    
+    if (error) {
+      console.error('Error submitting form:', error);
+      alert('Failed to send message. Please try again.');
+      setSubmitted(false);
+      return;
+    }
+
+    console.log('Message submitted successfully:', data);
+    
+    // Show success message
     setTimeout(() => {
       setSubmitted(false);
       setFormData({
@@ -35,7 +47,12 @@ const Contact = () => {
         message: ''
       });
     }, 3000);
-  };
+  } catch (err) {
+    console.error('Unexpected error:', err);
+    alert('Failed to send message. Please try again.');
+    setSubmitted(false);
+  }
+};
 
   return (
     <>

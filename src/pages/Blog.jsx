@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getAllPublishedPosts } from '../services/blogService';
-import girlPic from "../assets/girl_background.jpg";
+import earthPic from "../assets/earth_background.webp";
+import wisLogo from "../assets/wis_logo.png";
 
 const Blog = () => {
   const [posts, setPosts] = useState([]);
@@ -408,13 +409,17 @@ const Blog = () => {
           <div style={{
             textAlign: 'center',
             marginBottom: '50px',
-            backgroundImage: `url(${girlPic})`,
+            backgroundImage: `url(${earthPic})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
-            padding: '80px 20px',
+            padding: '100px 20px',
             borderRadius: '10px',
-            position: 'relative'
+            position: 'relative',
+            minHeight: '400px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
           }}>
             {/* Overlay for better text readability */}
             <div style={{
@@ -423,27 +428,44 @@ const Blog = () => {
               left: 0,
               right: 0,
               bottom: 0,
-              backgroundColor: 'rgba(0, 0, 0, 0.4)',
+              backgroundColor: 'rgba(0, 0, 0, 0.5)',
               borderRadius: '10px'
             }}></div>
 
-            {/* Content */}
-            <div style={{ position: 'relative', zIndex: 1 }}>
+            {/* Content with Logo in Center */}
+            <div style={{
+              position: 'relative',
+              zIndex: 1,
+              textAlign: 'center'
+            }}>
+              {/* WIS Logo */}
+              <img
+                src={wisLogo}
+                alt="Women In Stem Logo"
+                style={{
+                  maxWidth: '250px',
+                  height: 'auto',
+                  marginBottom: '25px'
+                }}
+              />
+
+              {/* Text Content */}
               <h1 style={{
-                fontSize: '2.5rem',
+                fontSize: '3rem',
                 fontWeight: 'bold',
                 color: 'white',
-                marginBottom: '15px',
-                textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
+                marginBottom: '20px',
+                textShadow: '2px 2px 6px rgba(0,0,0,0.7)'
               }}>
                 Our Blog
               </h1>
               <p style={{
-                fontSize: '1.1rem',
+                fontSize: '1.2rem',
                 color: 'white',
                 maxWidth: '700px',
                 margin: '0 auto',
-                textShadow: '1px 1px 2px rgba(0,0,0,0.5)'
+                textShadow: '1px 1px 3px rgba(0,0,0,0.7)',
+                opacity: 0.9
               }}>
                 Stay updated with the latest news, insights, and stories from Women in STEM
               </p>

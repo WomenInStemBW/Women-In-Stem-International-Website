@@ -33,7 +33,7 @@ const ManagePodcasts = () => {
     try {
       const { error } = await deleteEpisode(id);
       if (error) throw error;
-      
+
       setMessage('Episode deleted successfully');
       fetchEpisodes(); // Refresh the list
     } catch (error) {
@@ -47,9 +47,9 @@ const ManagePodcasts = () => {
       const { error } = await updateEpisode(episode.id, {
         published: !episode.published
       });
-      
+
       if (error) throw error;
-      
+
       setMessage(`Episode ${!episode.published ? 'published' : 'unpublished'} successfully`);
       fetchEpisodes(); // Refresh the list
     } catch (error) {
@@ -102,7 +102,9 @@ const ManagePodcasts = () => {
                     <thead>
                       <tr>
                         <th>Episode #</th>
+                        <th>Image</th>
                         <th>Title</th>
+                        <th>Speaker</th>
                         <th>Description</th>
                         <th>Spotify URL</th>
                         <th>Status</th>
@@ -114,19 +116,54 @@ const ManagePodcasts = () => {
                       {episodes.map((episode) => (
                         <tr key={episode.id}>
                           <td>{episode.episode_number}</td>
+
+                          {/* ADD IMAGE COLUMN */}
+                          <td>
+                            {episode.episode_image ? (
+                              <img
+                                src={episode.episode_image}
+                                alt={episode.title}
+                                style={{
+                                  width: '120px',
+                                  height: '68px',
+                                  objectFit: 'cover',
+                                  borderRadius: '4px'
+                                }}
+                              />
+                            ) : (
+                              <div style={{
+                                width: '120px',
+                                height: '68px',
+                                background: '#e9ecef',
+                                borderRadius: '4px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                fontSize: '0.8rem',
+                                color: '#6c757d'
+                              }}>
+                                No Image
+                              </div>
+                            )}
+                          </td>
+
                           <td>
                             <strong>{episode.title}</strong>
                           </td>
+
+                          {/* ADD SPEAKER COLUMN */}
+                          <td>{episode.speaker || '-'}</td>
+
                           <td>
-                            {episode.description && episode.description.length > 100 
-                              ? `${episode.description.substring(0, 100)}...` 
+                            {episode.description && episode.description.length > 100
+                              ? `${episode.description.substring(0, 100)}...`
                               : episode.description}
                           </td>
                           <td>
                             {episode.spotify_url ? (
-                              <a 
-                                href={episode.spotify_url} 
-                                target="_blank" 
+                              <a
+                                href={episode.spotify_url}
+                                target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-decoration-none"
                               >
@@ -137,7 +174,7 @@ const ManagePodcasts = () => {
                             )}
                           </td>
                           <td>
-                            <span 
+                            <span
                               className={`badge ${episode.published ? 'bg-success' : 'bg-secondary'}`}
                             >
                               {episode.published ? 'Published' : 'Draft'}

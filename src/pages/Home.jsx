@@ -1,5 +1,5 @@
 import React from 'react';
-import wisLogoBlue from "../assets/LOGO2 PNG@300x.png";
+import wisLogoBlue from "../assets/LOGO1 COPY PNG@300x.png";
 import nasaBackground from "../assets/nasa-background.webp";
 import labBackground from "../assets/lab.webp";
 import scienceBackground from "../assets/science.webp";
@@ -13,7 +13,7 @@ const Home = () => {
           background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), url(${nasaBackground});
           background-size: cover;
           background-position: center;
-          background-attachment: scroll;
+          background-attachment: fixed;
           min-height: 100vh;
           display: flex;
           align-items: center;
@@ -21,6 +21,28 @@ const Home = () => {
           color: white;
           position: relative;
         }
+
+        /* Mobile-specific fix */
+@media (max-width: 768px) {
+  .hero-section {
+    background-attachment: scroll;
+    background-size: cover;
+    background-position: center center;
+  }
+  
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  .hero-subtitle {
+    font-size: 1.3rem;
+  }
+  .hero-description {
+    font-size: 1rem;
+  }
+  .section-header h2 {
+    font-size: 2rem;
+  }
+}
 
         .hero-content {
           text-align: center;

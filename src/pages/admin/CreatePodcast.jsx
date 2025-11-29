@@ -1,7 +1,7 @@
 // src/pages/admin/CreatePodcast.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createEpisode } from '../../services/podcastService';
+import { createEpisode, uploadEpisodeImage } from '../../services/podcastService';
 
 const CreatePodcast = () => {
   const navigate = useNavigate();
@@ -10,9 +10,13 @@ const CreatePodcast = () => {
     description: '',
     episode_number: '',
     spotify_url: '',
+    speaker: '',
+    episode_image: '',
     published: true
   });
+  
   const [loading, setLoading] = useState(false);
+
   const [message, setMessage] = useState('');
 
   const handleChange = (e) => {
@@ -29,11 +33,21 @@ const CreatePodcast = () => {
     setMessage('');
 
     try {
+      let episodeImageUrl = formData.episode_image;
+
+      // Upload image if selected
+      if (imageFile) {
+        const { data, error: uploadError } = await uploadEpisodeImage(imageFile);
+        if (uploadError) throw uploadError;
+        episodeImageUrl = data.url;
+      }
+
       const { data, error } = await createEpisode({
         ...formData,
-        episode_number: parseInt(formData.episode_number)
+        episode_number: parseInt(formData.episode_number),
+        episode_image: episodeImageUrl
       });
-      
+
       if (error) throw error;
 
       setMessage('Podcast episode created successfully!');
@@ -48,13 +62,28 @@ const CreatePodcast = () => {
     }
   };
 
+  const [imageFile, setImageFile] = useState(null);
+  const [imagePreview, setImagePreview] = useState('');
+
+  const handleImageSelect = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImageFile(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <div className="container-fluid py-5">
       <div className="row justify-content-center">
         <div className="col-12 col-lg-8">
           <div className="d-flex justify-content-between align-items-center mb-4">
             <h1>Create New Podcast Episode</h1>
-            <button 
+            <button
               onClick={() => navigate('/admin/podcasts')}
               className="btn btn-outline-secondary"
             >
@@ -106,6 +135,62 @@ const CreatePodcast = () => {
                     rows="4"
                     className="form-control"
                     placeholder="Enter episode description"
+                  />
+                </div>
+
+                {/* Speaker Field - ADD THIS */}
+                <div className="mb-3">
+                  <label className="form-label">Speaker/Host</label>
+                  <input
+                    type="text"
+                    name="speaker"
+                    value={formData.speaker}
+                    onChange={handleChange}
+                    className="form-control"
+                    placeholder="Enter speaker name"
+                  />
+                </div>
+
+                {/* Episode Image - ADD THIS */}
+                <div className="mb-3">
+                  <label className="form-label">Episode Flyer Image</label>
+                  <div
+                    onClick={() => document.getElementById('episode-image').click()}
+                    style={{
+                      border: '2px dashed #dee2e6',
+                      borderRadius: '8px',
+                      padding: '30px',
+                      textAlign: 'center',
+                      cursor: 'pointer',
+                      minHeight: '250px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}
+                  >
+                    {imagePreview ? (
+                      <img
+                        src={imagePreview}
+                        alt="Preview"
+                        style={{
+                          maxWidth: '100%',
+                          maxHeight: '400px',
+                          borderRadius: '8px'
+                        }}
+                      />
+                    ) : (
+                      <div>
+                        <p className="mb-2">📷 Click to upload episode flyer</p>
+                        <p className="text-muted small">JPG, PNG (Recommended: 16:9 ratio)</p>
+                      </div>
+                    )}
+                  </div>
+                  <input
+                    type="file"
+                    id="episode-image"
+                    accept="image/*"
+                    onChange={handleImageSelect}
+                    style={{ display: 'none' }}
                   />
                 </div>
 
