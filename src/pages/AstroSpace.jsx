@@ -106,7 +106,7 @@ const AstroSpace = () => {
         {episode.episode_image ? (
           <div style={{
             width: '100%',
-            height: '500px', // Increased from 200px to 280px
+            height: '300px', // Increased from 200px to 280px
             overflow: 'hidden'
           }}>
             <img 

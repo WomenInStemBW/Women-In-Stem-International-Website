@@ -1,9 +1,6 @@
 import React from 'react';
 import wisLogoBlue from "../assets/LOGO1 COPY PNG@300x.png";
 import nasaBackground from "../assets/nasa-background.webp";
-import labBackground from "../assets/lab.webp";
-import scienceBackground from "../assets/science.webp";
-import podcastBackground from "../assets/podcast.webp";
 
 const Home = () => {
   return (
@@ -23,26 +20,26 @@ const Home = () => {
         }
 
         /* Mobile-specific fix */
-@media (max-width: 768px) {
-  .hero-section {
-    background-attachment: scroll;
-    background-size: cover;
-    background-position: center center;
-  }
-  
-  .hero-title {
-    font-size: 2.5rem;
-  }
-  .hero-subtitle {
-    font-size: 1.3rem;
-  }
-  .hero-description {
-    font-size: 1rem;
-  }
-  .section-header h2 {
-    font-size: 2rem;
-  }
-}
+        @media (max-width: 768px) {
+          .hero-section {
+            background-attachment: scroll;
+            background-size: cover;
+            background-position: center center;
+          }
+          
+          .hero-title {
+            font-size: 2.5rem;
+          }
+          .hero-subtitle {
+            font-size: 1.3rem;
+          }
+          .hero-description {
+            font-size: 1rem;
+          }
+          .section-header h2 {
+            font-size: 2rem;
+          }
+        }
 
         .hero-content {
           text-align: center;
@@ -126,11 +123,6 @@ const Home = () => {
           transform: translateY(-3px);
         }
 
-        .opportunities-section {
-          background: white;
-          padding: 80px 0;
-        }
-
         .section-header {
           text-align: center;
           margin-bottom: 60px;
@@ -150,64 +142,57 @@ const Home = () => {
           margin: 0 auto;
         }
 
-        .card {
-          border: none;
-          border-radius: 15px;
-          overflow: hidden;
-          transition: all 0.3s ease;
-          box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-          height: 100%;
-          background: white;
-        }
-
-        .card:hover {
-          transform: translateY(-10px);
-          box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-        }
-
-        .card-icon {
-          width: 80px;
-          height: 80px;
-          margin: 30px auto 20px;
+        /* Optimized gradient sections - no background images */
+        .gradient-section-purple {
           background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 2.5rem;
+          padding: 80px 0;
+          color: white;
+          position: relative;
+          overflow: hidden;
         }
 
-        .card-body {
-          padding: 20px 30px 30px;
+        .gradient-section-orange {
+          background: linear-gradient(135deg, #ea8966 0%, #a2544b 100%);
+          padding: 80px 0;
+          color: white;
+          position: relative;
+          overflow: hidden;
         }
 
-        .card-title {
-          font-size: 1.5rem;
-          font-weight: bold;
-          color: #2d3748;
-          margin-bottom: 15px;
-          text-align: center;
+        .gradient-section-dark {
+          background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+          padding: 80px 0;
+          color: white;
+          position: relative;
+          overflow: hidden;
         }
 
-        .card-text {
-          color: #4a5568;
-          font-size: 1rem;
-          line-height: 1.6;
-          text-align: center;
+        /* Add subtle pattern overlay for visual interest without images */
+        .gradient-section-purple::before,
+        .gradient-section-orange::before,
+        .gradient-section-dark::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-image: 
+            radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+            radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+          pointer-events: none;
         }
 
-        .card-link {
-          display: block;
-          text-align: center;
-          margin-top: 20px;
-          color: #667eea;
-          font-weight: 600;
-          text-decoration: none;
-          transition: color 0.3s ease;
+        .section-content {
+          position: relative;
+          z-index: 1;
         }
 
-        .card-link:hover {
-          color: #764ba2;
+        .section-icon {
+          font-size: 4rem;
+          margin-bottom: 20px;
+          display: inline-block;
+          opacity: 0.9;
         }
 
         @media (max-width: 768px) {
@@ -222,6 +207,9 @@ const Home = () => {
           }
           .section-header h2 {
             font-size: 2rem;
+          }
+          .section-icon {
+            font-size: 3rem;
           }
         }
       `}</style>
@@ -246,7 +234,7 @@ const Home = () => {
           </p>
           <div className="hero-buttons">
             <a href="/about" className="hero-btn btn-primary-hero">Learn More</a>
-            <a href="/opportunities" className="hero-btn btn-secondary-hero">Get Involved</a>
+            <a href="/offers" className="hero-btn btn-secondary-hero">Get Involved</a>
           </div>
         </div>
       </section>
@@ -297,116 +285,113 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Blog Section */}
-      <section style={{ 
-        backgroundImage: `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${labBackground})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        padding: '80px 0',
-        color: 'white'
-      }}>
+      {/* Blog Section - Dark Gradient */}
+      <section className="gradient-section-dark">
         <div className="container">
-          <div className="row align-items-center">
-            <div className="col-lg-8">
-              <h2 style={{ 
-                fontSize: '2.5rem', 
-                fontWeight: 'bold', 
-                marginBottom: '20px' 
-              }}>
-                Latest Insights & Stories
-              </h2>
-              <p style={{ 
-                fontSize: '1.1rem', 
-                lineHeight: '1.7', 
-                marginBottom: '30px',
-                opacity: 0.9
-              }}>
-                Discover inspiring stories, latest news, and educational content from our 
-                community. Stay updated with the advancements in STEM and Space sciences.
-              </p>
-              <a href="/blog" className="hero-btn btn-secondary-hero">
-                Read Our Blog →
-              </a>
+          <div className="section-content">
+            <div className="row align-items-center">
+              <div className="col-lg-2 text-center mb-4 mb-lg-0">
+                <div className="section-icon">📚</div>
+              </div>
+              <div className="col-lg-10">
+                <h2 style={{ 
+                  fontSize: '2.5rem', 
+                  fontWeight: 'bold', 
+                  marginBottom: '20px' 
+                }}>
+                  Latest Insights & Stories
+                </h2>
+                <p style={{ 
+                  fontSize: '1.1rem', 
+                  lineHeight: '1.7', 
+                  marginBottom: '30px',
+                  opacity: 0.9
+                }}>
+                  Discover inspiring stories, latest news, and educational content from our 
+                  community. Stay updated with the advancements in STEM and Space sciences.
+                </p>
+                <a href="/blog" className="hero-btn btn-secondary-hero">
+                  Read Our Blog →
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Opportunities Section */}
-      <section style={{ 
-        backgroundImage: `linear-gradient(rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)), url(${scienceBackground})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        padding: '80px 0',
-        color: 'white'
-      }}>
+      {/* Opportunities Section - Purple Gradient */}
+      <section className="gradient-section-purple">
         <div className="container">
-          <div className="row align-items-center">
-            <div className="col-lg-8">
-              <h2 style={{ 
-                fontSize: '2.5rem', 
-                fontWeight: 'bold', 
-                marginBottom: '20px' 
-              }}>
-                Explore Opportunities
-              </h2>
-              <p style={{ 
-                fontSize: '1.1rem', 
-                lineHeight: '1.7', 
-                marginBottom: '30px',
-                opacity: 0.9
-              }}>
-                Find scholarships, internships, workshops, and career opportunities in STEM 
-                and Space industries. Take the next step in your professional journey.
-              </p>
-              <a href="/opportunities" className="hero-btn" style={{
-                background: 'rgba(255,255,255,0.2)',
-                color: 'white',
-                border: '2px solid white',
-                backdropFilter: 'blur(10px)'
-              }}>
-                View Opportunities →
-              </a>
+          <div className="section-content">
+            <div className="row align-items-center">
+              <div className="col-lg-2 text-center mb-4 mb-lg-0">
+                <div className="section-icon">🎯</div>
+              </div>
+              <div className="col-lg-10">
+                <h2 style={{ 
+                  fontSize: '2.5rem', 
+                  fontWeight: 'bold', 
+                  marginBottom: '20px' 
+                }}>
+                  Explore Opportunities
+                </h2>
+                <p style={{ 
+                  fontSize: '1.1rem', 
+                  lineHeight: '1.7', 
+                  marginBottom: '30px',
+                  opacity: 0.9
+                }}>
+                  Find scholarships, internships, workshops, and career opportunities in STEM 
+                  and Space industries. Take the next step in your professional journey.
+                </p>
+                <a href="/opportunities" className="hero-btn" style={{
+                  background: 'rgba(255,255,255,0.2)',
+                  color: 'white',
+                  border: '2px solid white',
+                  backdropFilter: 'blur(10px)'
+                }}>
+                  View Opportunities →
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Teams Section */}
-      <section style={{ 
-        backgroundImage: `linear-gradient(rgba(234, 137, 102, 0.8), rgba(162, 84, 75, 0.8)), url(${podcastBackground})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        padding: '80px 0',
-        color: 'white'
-      }}>
+      {/* Teams Section - Orange Gradient */}
+      <section className="gradient-section-orange">
         <div className="container">
-          <div className="row align-items-center">
-            <div className="col-lg-8">
-              <h2 style={{ 
-                fontSize: '2.5rem', 
-                fontWeight: 'bold', 
-                marginBottom: '20px' 
-              }}>
-                Meet Our Team
-              </h2>
-              <p style={{ 
-                fontSize: '1.1rem', 
-                lineHeight: '1.7', 
-                marginBottom: '30px',
-                opacity: 0.9
-              }}>
-                Get to know the passionate individuals driving our mission forward. Our diverse 
-                team of experts and volunteers are committed to empowering women in STEM.
-              </p>
-              <a href="/teams" className="hero-btn" style={{
-                background: 'rgba(255,255,255,0.2)',
-                color: 'white',
-                border: '2px solid white',
-                backdropFilter: 'blur(10px)'
-              }}>
-                Meet the Team →
-              </a>
+          <div className="section-content">
+            <div className="row align-items-center">
+              <div className="col-lg-2 text-center mb-4 mb-lg-0">
+                <div className="section-icon">👥</div>
+              </div>
+              <div className="col-lg-10">
+                <h2 style={{ 
+                  fontSize: '2.5rem', 
+                  fontWeight: 'bold', 
+                  marginBottom: '20px' 
+                }}>
+                  Meet Our Team
+                </h2>
+                <p style={{ 
+                  fontSize: '1.1rem', 
+                  lineHeight: '1.7', 
+                  marginBottom: '30px',
+                  opacity: 0.9
+                }}>
+                  Get to know the passionate individuals driving our mission forward. Our diverse 
+                  team of experts and volunteers are committed to empowering women in STEM.
+                </p>
+                <a href="/teams" className="hero-btn" style={{
+                  background: 'rgba(255,255,255,0.2)',
+                  color: 'white',
+                  border: '2px solid white',
+                  backdropFilter: 'blur(10px)'
+                }}>
+                  Meet the Team →
+                </a>
+              </div>
             </div>
           </div>
         </div>

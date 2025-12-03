@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getAllContactMessages, markAsRead, deleteContactMessage } from '../../services/contactService';
+import { getAllContactMessages, markMessageAsRead, deleteContactMessage } from '../../services/contactService';
 
 const ManageContacts = () => {
   const [messages, setMessages] = useState([]);
@@ -20,7 +20,7 @@ const ManageContacts = () => {
   };
 
   const handleMarkAsRead = async (id) => {
-    await markAsRead(id);
+    await markMessageAsRead(id);
     loadMessages();
   };
 

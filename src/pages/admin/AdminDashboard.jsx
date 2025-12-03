@@ -309,6 +309,9 @@ const AdminDashboard = () => {
                 <a href="/admin/contacts" className="action-btn">
                   📧 View Contact Messages
                 </a>
+                <a href="/admin/offers" className="action-btn">
+                  📧 Manage Offers
+                </a>
               </div>
             </div>
           </div>

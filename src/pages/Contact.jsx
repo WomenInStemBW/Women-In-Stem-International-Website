@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import wisLogoRed from "../assets/LOGO1 PNG@300x.png"
 import telescopePic from "../assets/telescope.webp"
 import { submitContactForm } from '../services/contactService';
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -12,6 +13,7 @@ const Contact = () => {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -21,60 +23,66 @@ const Contact = () => {
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  setSubmitted(true);
+    e.preventDefault();
+    setSubmitting(true);
 
-  try {
-    const { data, error } = await submitContactForm(formData);
-    
-    if (error) {
-      console.error('Error submitting form:', error);
+    try {
+      const { data, error } = await submitContactForm(formData);
+      
+      if (error) {
+        console.error('Error submitting form:', error);
+        alert('Failed to send message. Please try again.');
+        setSubmitting(false);
+        return;
+      }
+
+      console.log('Message submitted successfully:', data);
+      setSubmitted(true);
+      
+      // Reset form after 3 seconds
+      setTimeout(() => {
+        setSubmitted(false);
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          subject: '',
+          message: ''
+        });
+      }, 3000);
+    } catch (err) {
+      console.error('Unexpected error:', err);
       alert('Failed to send message. Please try again.');
-      setSubmitted(false);
-      return;
+    } finally {
+      setSubmitting(false);
     }
-
-    console.log('Message submitted successfully:', data);
-    
-    // Show success message
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        subject: '',
-        message: ''
-      });
-    }, 3000);
-  } catch (err) {
-    console.error('Unexpected error:', err);
-    alert('Failed to send message. Please try again.');
-    setSubmitted(false);
-  }
-};
+  };
 
   return (
     <>
       <style>{`
         .contact-page {
-  min-height: 100vh;
-  background: url(${telescopePic}) center/cover no-repeat;
-  padding: 60px 0;
-  position: relative;
-}
+          min-height: 100vh;
+          background: url(${telescopePic}) center/cover no-repeat;
+          padding: 60px 0;
+          position: relative;
+        }
 
-// Add a dark overlay for better text contrast
-.contact-page::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.3); // Dark overlay
-  z-index: -1;
-}
+        .contact-page::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(0, 0, 0, 0.3);
+          z-index: 0;
+        }
+
+        .contact-page > .container {
+          position: relative;
+          z-index: 1;
+        }
 
         .contact-header {
           text-align: center;
@@ -106,14 +114,6 @@ const Contact = () => {
           margin: 0 auto;
         }
 
-        .contact-form-wrapper h3 {
-          font-size: 1.8rem;
-          font-weight: bold;
-          color: #2d3748;
-          margin-bottom: 25px;
-          text-align: center;  /* ADD THIS LINE */
-        }
-
         .contact-form-wrapper {
           background: white;
           padding: 40px;
@@ -126,6 +126,7 @@ const Contact = () => {
           font-weight: bold;
           color: #2d3748;
           margin-bottom: 25px;
+          text-align: center;
         }
 
         .form-group {
@@ -174,13 +175,18 @@ const Contact = () => {
           transition: all 0.3s ease;
         }
 
-        .submit-btn:hover {
+        .submit-btn:hover:not(:disabled) {
           transform: translateY(-2px);
-          box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+          box-shadow: 0 8px 20px rgba(234, 137, 102, 0.4);
         }
 
-        .submit-btn:active {
+        .submit-btn:active:not(:disabled) {
           transform: translateY(0);
+        }
+
+        .submit-btn:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
         }
 
         .success-message {
@@ -205,15 +211,10 @@ const Contact = () => {
         }
 
         @media (max-width: 768px) {
-          .contact-content {
-            grid-template-columns: 1fr;
-          }
-
           .contact-header h1 {
             font-size: 2rem;
           }
 
-          .contact-info,
           .contact-form-wrapper {
             padding: 25px;
           }
@@ -245,7 +246,7 @@ const Contact = () => {
                 </div>
               )}
 
-              <div onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit}>
                 <div className="form-group">
                   <label htmlFor="name">Full Name *</label>
                   <input
@@ -257,6 +258,7 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     placeholder="Enter your name"
+                    disabled={submitting}
                   />
                 </div>
 
@@ -271,6 +273,7 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     placeholder="your.email@example.com"
+                    disabled={submitting}
                   />
                 </div>
 
@@ -284,6 +287,7 @@ const Contact = () => {
                     value={formData.phone}
                     onChange={handleChange}
                     placeholder="+267 12345678"
+                    disabled={submitting}
                   />
                 </div>
 
@@ -298,6 +302,7 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     placeholder="What is this regarding?"
+                    disabled={submitting}
                   />
                 </div>
 
@@ -311,13 +316,18 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     placeholder="Tell us more about your inquiry..."
+                    disabled={submitting}
                   ></textarea>
                 </div>
 
-                <button type="button" onClick={handleSubmit} className="submit-btn">
-                  Send Message
+                <button 
+                  type="submit" 
+                  className="submit-btn"
+                  disabled={submitting}
+                >
+                  {submitting ? 'Sending...' : 'Send Message'}
                 </button>
-              </div>
+              </form>
             </div>
           </div>
         </div>

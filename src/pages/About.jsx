@@ -93,6 +93,11 @@ const About = () => {
           border-bottom: 1px solid #e9ecef;
         }
 
+        .incorporation-item {
+          padding: 15px 0;
+          border-bottom: 1px solid #e9ecef;
+        }
+
         .mission-item:last-child {
           border-bottom: none;
         }
@@ -161,154 +166,167 @@ const About = () => {
       {/* Main Content */}
       <div className="container about-section px-3 px-md-0">
         {/* Main Content */}
-      <div className="container about-section">
-        <div className="row">
-          {/* Left Column - Main Content */}
-          <div className="col-lg-8">
-            {/* About Us Section */}
-            <section className="mb-5">
-              <h2 className="section-title">About Us</h2>
-              <p className="lead">
-                Women in STEM - International (WiS) is an organization dedicated to STEM, Astronomy,
-                Space Science, and Technology education and outreach for secondary school students,
-                university students, girls, young women, and teachers in Botswana and across Africa.
-              </p>
-              <p>
-                We educate and inspire through workshops, seminars, webinars, training sessions,
-                mentorship programs, and courses. In addition, we share news and opportunities for
-                professional development in the STEM and Space industries.
-              </p>
-            </section>
+        <div className="container about-section">
+          <div className="row">
+            {/* Left Column - Main Content */}
+            <div className="col-lg-8">
+              {/* About Us Section */}
+              <section className="mb-5">
+                <h2 className="section-title">About Us</h2>
+                <p className="lead">
+                  Women in STEM - International (WiS) is an organization dedicated to STEM, Astronomy,
+                  Space Science, and Technology education and outreach for secondary school students,
+                  university students, girls, young women, and teachers across Africa.
+                </p>
+                <p>
+                  We educate and inspire through workshops, seminars, webinars, training sessions,
+                  mentorship programs, and courses. In addition, we share news and opportunities for
+                  professional development in the STEM and Space industries.
+                </p>
+              </section>
 
-            {/* Vision Section */}
-            <section className="mb-5">
-              <h2 className="section-title">Vision</h2>
-              <p>
-                To be a transformational and leading organization in delivering Space Science,
-                Technology, Astronomy, and STEM skills and knowledge, pioneering the foundation
-                and growth of the Space sector and industry in Botswana.
-              </p>
-            </section>
+              {/* Vision Section */}
+              <section className="mb-5">
+                <h2 className="section-title">Vision</h2>
+                <p>
+                  To be a transformational and leading organization in delivering Space Science,
+                  Technology, Astronomy, and STEM skills and knowledge, pioneering the foundation
+                  and growth of the Space sector and industry in Botswana.
+                </p>
+              </section>
 
-            {/* Motto */}
-            <div className="motto-box">
-              <h3 className="mb-3">Our Motto</h3>
-              <h2 className="fw-bold">Knowledge — Power — Change</h2>
+              {/* Motto */}
+              <div className="motto-box">
+                <h3 className="mb-3">Our Motto</h3>
+                <h2 className="fw-bold">Knowledge — Power — Change</h2>
+              </div>
+
+              {/* Core Values */}
+              <section className="mb-5">
+                <h2 className="section-title">Core Values</h2>
+                <div className="values-card">
+                  <h5 className="fw-bold mb-2">🚀 Driving Change</h5>
+                  <p className="mb-0">We are committed to creating meaningful impact and transformation in STEM, Astronomy and Space education.</p>
+                </div>
+                <div className="values-card">
+                  <h5 className="fw-bold mb-2">🌍 Global Community & Collaboration</h5>
+                  <p className="mb-0">Building bridges across borders to advance STEM and Space industries in Africa.</p>
+                </div>
+                <div className="values-card">
+                  <h5 className="fw-bold mb-2">✨ Transparency & Integrity</h5>
+                  <p className="mb-0">Operating with honesty, accountability, and ethical standards in all we do.</p>
+                </div>
+              </section>
+
+              {/* Mission Section */}
+              <section className="mb-5">
+                <h2 className="section-title">Mission</h2>
+                <div className="mission-item">
+                  <p className="mb-0">
+                    <strong>•</strong> Build human capital by empowering individuals in Space Science,
+                    Technology, Astronomy, and STEM, contributing to the advancement of the STEM
+                    and Space industries in Africa.
+                  </p>
+                </div>
+                <div className="mission-item">
+                  <p className="mb-0">
+                    <strong>•</strong> Provide knowledge, information, and education in Space Science,
+                    Technology, Astronomy, and STEM to African communities, while actively recruiting,
+                    empowering, and impacting more women.
+                  </p>
+                </div>
+                <div className="mission-item">
+                  <p className="mb-0">
+                    <strong>•</strong> Foster collaboration, research, development, and innovation in
+                    Space Science, Technology, Astronomy, and STEM.
+                  </p>
+                </div>
+                <div className="mission-item">
+                  <p className="mb-0">
+                    <strong>•</strong> Promote gender equality across Space Science, Technology,
+                    Astronomy, and STEM fields.
+                  </p>
+                </div>
+              </section>
+
+              {/* Incorporation Section - MOVED INSIDE THE LEFT COLUMN */}
+              <section className="mb-5">
+                <h2 className="section-title">Incorporation</h2>
+                <div className="incorporation-item">
+                  <p className="mb-0">
+                    Women in STEM - International (WiS - Int) is an incorporation extension of the Women in STEM - Botswana (WiS - BW) organization,
+                    which specializes in STEM, Astronomy and Space sector training and education in Botswana.
+                    <br />
+                    <a href="https://www.wisbw.org" target="_blank" rel="noopener noreferrer" className="ms-2">www.wisbw.org</a>
+                  </p>
+                </div>
+              </section>
             </div>
 
-            {/* Core Values */}
-            <section className="mb-5">
-              <h2 className="section-title">Core Values</h2>
-              <div className="values-card">
-                <h5 className="fw-bold mb-2">🚀 Driving Change</h5>
-                <p className="mb-0">We are committed to creating meaningful impact and transformation in STEM, Astronomy and Space education.</p>
-              </div>
-              <div className="values-card">
-                <h5 className="fw-bold mb-2">🌍 Global Community & Collaboration</h5>
-                <p className="mb-0">Building bridges across borders to advance STEM and Space industries in Africa.</p>
-              </div>
-              <div className="values-card">
-                <h5 className="fw-bold mb-2">✨ Transparency & Integrity</h5>
-                <p className="mb-0">Operating with honesty, accountability, and ethical standards in all we do.</p>
-              </div>
-            </section>
+            {/* Right Column - Partners & Images */}
+            <div className="col-lg-4">
+              <div className="partners-section">
+                <h4 className="fw-bold mb-4 text-center">Strategic Affiliations, Supporters & Partners</h4>
 
-            {/* Mission Section */}
-            <section className="mb-5">
-              <h2 className="section-title">Mission</h2>
-              <div className="mission-item">
-                <p className="mb-0">
-                  <strong>•</strong> Build human capital by empowering individuals in Space Science,
-                  Technology, Astronomy, and STEM, contributing to the advancement of the STEM
-                  and Space industries in Africa.
-                </p>
-              </div>
-              <div className="mission-item">
-                <p className="mb-0">
-                  <strong>•</strong> Provide knowledge, information, and education in Space Science,
-                  Technology, Astronomy, and STEM to African communities, while actively recruiting,
-                  empowering, and impacting more women.
-                </p>
-              </div>
-              <div className="mission-item">
-                <p className="mb-0">
-                  <strong>•</strong> Foster collaboration, research, development, and innovation in
-                  Space Science, Technology, Astronomy, and STEM.
-                </p>
-              </div>
-              <div className="mission-item">
-                <p className="mb-0">
-                  <strong>•</strong> Promote gender equality across Space Science, Technology,
-                  Astronomy, and STEM fields.
-                </p>
-              </div>
-            </section>
-          </div>
+                {/* Partner Logos with imported images */}
+                <div className="partner-logo">
+                  <img src={biustImage} alt="BIUST Partner Logo" />
+                </div>
+                <div className="partner-logo">
+                  <img src={basicEducationImage} alt="Ministry of Basic Education Partner Logo" />
+                </div>
+                <div className="partner-logo">
+                  <img src={afasImage} alt="AFAS Partner Logo" />
+                </div>
+                <div className="partner-logo">
+                  <img src={timeEducationImage} alt="Time Education Partner Logo" />
+                </div>
+                <div className="partner-logo">
+                  <img src={daraImage} alt="DARA" />
+                </div>
+                <div className="partner-logo">
+                  <img src={scienceImage} alt="Science Partner Logo" />
+                </div>
+                <div className="partner-logo">
+                  <img src={oadImage} alt="OAD Partner Logo" />
+                </div>
+                <div className="partner-logo">
+                  <img src={oaeImage} alt="OAE Partner Logo" />
+                </div>
+                <div className="partner-logo">
+                  <img src={iauImage} alt="International Astronomical Union Logo" />
+                </div>
+                <div className="partner-logo">
+                  <img src={spaceGenerationImage} alt="Space Generation Partner Logo" />
+                </div>
+                <div className="partner-logo">
+                  <img src={cumbresImage} alt="Las Cumbres Observatory Partner Logo" />
+                </div>
+                <div className="partner-logo">
+                  <img src={papssnImage} alt="PAPSSN Partner Logo" />
+                </div>
+                <div className="partner-logo">
+                  <img src={starlightImage} alt="Starlight Education Partner Logo" />
+                </div>
+                <div className="partner-logo">
+                  <img src={ssviImage} alt="SSVI Partner Logo" />
+                </div>
+                <div className="partner-logo">
+                  <img src={stemiImage} alt="STEMi Markers Africa Partner Logo" />
+                </div>
+                <div className="partner-logo">
+                  <img src={issetImage} alt="ISSET Partner Logo" />
+                </div>
 
-          {/* Right Column - Partners & Images */}
-          <div className="col-lg-4">
-            <div className="partners-section">
-              <h4 className="fw-bold mb-4 text-center">Strategic Affiliations, Supporters & Partners</h4>
-
-              {/* Partner Logos with imported images */}
-              <div className="partner-logo">
-                <img src={biustImage} alt="BIUST Partner Logo" />
-              </div>
-              <div className="partner-logo">
-                <img src={basicEducationImage} alt="Ministry of Basic Education Partner Logo" />
-              </div>
-              <div className="partner-logo">
-                <img src={afasImage} alt="AFAS Partner Logo" />
-              </div>
-              <div className="partner-logo">
-                <img src={timeEducationImage} alt="Time Education Partner Logo" />
-              </div>
-              <div className="partner-logo">
-                <img src={daraImage} alt="DARA" />
-              </div>
-              <div className="partner-logo">
-                <img src={scienceImage} alt="Science Partner Logo" />
-              </div>
-              <div className="partner-logo">
-                <img src={oadImage} alt="OAD Partner Logo" />
-              </div>
-              <div className="partner-logo">
-                <img src={oaeImage} alt="OAE Partner Logo" />
-              </div>
-              <div className="partner-logo">
-                <img src={iauImage} alt="International Astronomical Union Logo" />
-              </div>
-              <div className="partner-logo">
-                <img src={spaceGenerationImage} alt="Space Generation Partner Logo" />
-              </div>
-              <div className="partner-logo">
-                <img src={cumbresImage} alt="Las Cumbres Observatory Partner Logo" />
-              </div>
-              <div className="partner-logo">
-                <img src={papssnImage} alt="PAPSSN Partner Logo" />
-              </div>
-              <div className="partner-logo">
-                <img src={starlightImage} alt="Starlight Education Partner Logo" />
-              </div>
-              <div className="partner-logo">
-                <img src={ssviImage} alt="SSVI Partner Logo" />
-              </div>
-              <div className="partner-logo">
-                <img src={stemiImage} alt="STEMi Markers Africa Partner Logo" />
-              </div>
-              <div className="partner-logo">
-                <img src={issetImage} alt="ISSET Partner Logo" />
-              </div>
-
-              <div className="text-center mt-4">
-                <p className="text-muted small">
-                  <em>Building partnerships for a better tomorrow</em>
-                </p>
+                <div className="text-center mt-4">
+                  <p className="text-muted small">
+                    <em>Building partnerships for a better tomorrow</em>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
       </div>
 
       {/* Bottom spacing */}

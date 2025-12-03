@@ -14,6 +14,7 @@ import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import Teams from './pages/Teams';
 import Opportunities from './pages/Opportunities';
+import Offers from './pages/Offers';
 import Contact from './pages/Contact';
 import About from './pages/About';
 
@@ -39,6 +40,7 @@ import ManageContacts from './pages/admin/ManageContacts';
 import CreateOpportunity from './pages/admin/CreateOpportunity';
 import ManageOpportunities from './pages/admin/ManageOpportunities';
 import EditOpportunity from './pages/admin/EditOpportunity';
+import ManageOffers from './pages/admin/ManageOffers';
 
 // Import Context
 import { AuthProvider } from './context/AuthContext';
@@ -64,6 +66,7 @@ function App() {
               <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/teams" element={<Teams />} />
               <Route path="/opportunities" element={<Opportunities />} />
+              <Route path="/offers" element={<Offers />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/astro-space" element={<AstroSpace />} />
 
@@ -221,6 +224,15 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <ManageContacts />
+                  </ProtectedRoute>
+                }
+              />
+
+              <Route
+                path="/admin/offers"
+                element={
+                  <ProtectedRoute>
+                    <ManageOffers />
                   </ProtectedRoute>
                 }
               />
