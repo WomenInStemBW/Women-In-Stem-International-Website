@@ -17,6 +17,7 @@ import Opportunities from './pages/Opportunities';
 import Offers from './pages/Offers';
 import Contact from './pages/Contact';
 import About from './pages/About';
+import Store from './pages/Store';
 
 // Import admin pages
 import AdminLogin from './pages/admin/AdminLogin';
@@ -30,17 +31,20 @@ import ManageTeams from './pages/admin/ManageTeams';
 import CreateTeam from './pages/admin/CreateTeam';
 import EditTeam from './pages/admin/EditTeam';
 import ManageTeamMembers from './pages/admin/ManageTeamMembers';
-// Add these imports to App.jsx
+
 import ManageGroups from './pages/admin/ManageGroups';
 import CreateGroup from './pages/admin/CreateGroup';
 import EditGroup from './pages/admin/EditGroup';
 import ManageContacts from './pages/admin/ManageContacts';
 
-// Import new opportunity pages
 import CreateOpportunity from './pages/admin/CreateOpportunity';
 import ManageOpportunities from './pages/admin/ManageOpportunities';
 import EditOpportunity from './pages/admin/EditOpportunity';
 import ManageOffers from './pages/admin/ManageOffers';
+import StoreRegistration from './pages/StoreRegistration';
+import CreateStoreItem from './pages/admin/CreateStoreItem';
+import ManageStore from './pages/admin/ManageStore';
+import EditStoreItem from './pages/admin/EditStoreItem';
 
 // Import Context
 import { AuthProvider } from './context/AuthContext';
@@ -69,6 +73,8 @@ function App() {
               <Route path="/offers" element={<Offers />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/astro-space" element={<AstroSpace />} />
+              <Route path="/store" element={<Store />} />
+              <Route path="/store/register/:itemId" element={<StoreRegistration />} />
 
               {/* Admin Login (Not Protected) */}
               <Route path="/admin/login" element={<AdminLogin />} />
@@ -233,6 +239,30 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <ManageOffers />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/admin/store/manage"
+                element={
+                  <ProtectedRoute>
+                    <ManageStore />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/admin/store/create"
+                element={
+                  <ProtectedRoute>
+                    <CreateStoreItem />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/admin/store/update/:id"
+                element={
+                  <ProtectedRoute>
+                    <EditStoreItem />
                   </ProtectedRoute>
                 }
               />

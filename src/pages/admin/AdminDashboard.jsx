@@ -306,11 +306,11 @@ const AdminDashboard = () => {
                 <a href="/admin/podcasts" className="action-btn">
                   🎙️ Manage Podcasts
                 </a>
-                <a href="/admin/contacts" className="action-btn">
-                  📧 View Contact Messages
-                </a>
                 <a href="/admin/offers" className="action-btn">
                   📧 Manage Offers
+                </a>
+                <a href="/admin/store/manage" className="action-btn">
+                 Manage Store Items
                 </a>
               </div>
             </div>
