@@ -174,3 +174,55 @@ export const toggleOfferStatus = async (id, isActive) => {
     return { data: null, error };
   }
 };
+
+// Submit offer registration (booking)
+export const submitOfferRegistration = async (registrationData) => {
+  try {
+    const { data, error } = await supabase
+      .from('offer_registrations')
+      .insert([registrationData])
+      .select()
+      .single();
+
+    if (error) throw error;
+
+    return { data, error: null };
+  } catch (error) {
+    console.error('Error submitting offer registration:', error);
+    return { data: null, error };
+  }
+};
+
+// Get all offer registrations (admin)
+export const getAllOfferRegistrations = async () => {
+  try {
+    const { data, error } = await supabase
+      .from('offer_registrations')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) throw error;
+
+    return { data, error: null };
+  } catch (error) {
+    console.error('Error fetching offer registrations:', error);
+    return { data: null, error };
+  }
+};
+
+// Delete offer registration
+export const deleteOfferRegistration = async (id) => {
+  try {
+    const { error } = await supabase
+      .from('offer_registrations')
+      .delete()
+      .eq('id', id);
+
+    if (error) throw error;
+
+    return { error: null };
+  } catch (error) {
+    console.error('Error deleting offer registration:', error);
+    return { error };
+  }
+};

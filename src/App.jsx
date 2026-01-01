@@ -18,6 +18,7 @@ import Offers from './pages/Offers';
 import Contact from './pages/Contact';
 import About from './pages/About';
 import Store from './pages/Store';
+import OfferBooking from './pages/OfferBooking';
 
 // Import admin pages
 import AdminLogin from './pages/admin/AdminLogin';
@@ -75,6 +76,7 @@ function App() {
               <Route path="/astro-space" element={<AstroSpace />} />
               <Route path="/store" element={<Store />} />
               <Route path="/store/register/:itemId" element={<StoreRegistration />} />
+              <Route path="/offers/book/:offerId" element={<OfferBooking />} />
 
               {/* Admin Login (Not Protected) */}
               <Route path="/admin/login" element={<AdminLogin />} />
@@ -259,7 +261,7 @@ function App() {
                 }
               />
               <Route
-                path="/admin/store/update/:id"
+                path="/admin/store/update/:itemId"
                 element={
                   <ProtectedRoute>
                     <EditStoreItem />

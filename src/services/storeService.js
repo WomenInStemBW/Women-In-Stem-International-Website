@@ -123,15 +123,37 @@ export const createStoreItem = async (itemData) => {
 // Update store item
 export const updateStoreItem = async (id, itemData) => {
   try {
+    console.log('Updating item with ID:', id, 'Data:', itemData);
+    
+    // Clean up the data - remove any undefined or null values that might cause issues
+    const cleanData = {};
+    Object.keys(itemData).forEach(key => {
+      if (itemData[key] !== undefined && itemData[key] !== null) {
+        cleanData[key] = itemData[key];
+      }
+    });
+    
+    console.log('Clean data for update:', cleanData);
+    
     const { data, error } = await supabase
       .from('store_items')
-      .update(itemData)
+      .update(cleanData)
       .eq('id', id)
       .select()
       .single();
 
-    if (error) throw error;
+    if (error) {
+      console.error('Supabase update error details:', {
+        message: error.message,
+        details: error.details,
+        hint: error.hint,
+        code: error.code,
+        stack: error.stack
+      });
+      throw new Error(`Supabase error: ${error.message} - ${error.details || ''}`);
+    }
 
+    console.log('Update successful:', data);
     return { data, error: null };
   } catch (error) {
     console.error('Error updating store item:', error);

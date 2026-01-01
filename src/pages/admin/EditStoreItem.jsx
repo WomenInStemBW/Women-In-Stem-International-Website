@@ -28,6 +28,8 @@ const EditStoreItem = () => {
   const [imageFile, setImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
 
+  
+
   useEffect(() => {
     loadItem();
   }, [itemId]);
@@ -93,57 +95,72 @@ const EditStoreItem = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
+  
+  if (!formData.name.trim()) {
+    alert('Please enter an item name');
+    return;
+  }
+
+  if (!formData.price || parseFloat(formData.price) <= 0) {
+    alert('Please enter a valid price');
+    return;
+  }
+
+  setUploading(true);
+  
+  try {
+    let imageUrl = formData.image_url;
     
-    if (!formData.name.trim()) {
-      alert('Please enter an item name');
-      return;
-    }
+    // Upload new image if file is selected
+    if (imageFile) {
+      const { data: uploadData, error: uploadError } = await uploadStoreImage(imageFile);
+      if (uploadError) {
+        console.error('Image upload error:', uploadError);
+        throw new Error('Failed to upload image: ' + uploadError.message);
+      }
+      imageUrl = uploadData.url;
 
-    if (!formData.price || parseFloat(formData.price) <= 0) {
-      alert('Please enter a valid price');
-      return;
-    }
-
-    setUploading(true);
-    
-    try {
-      let imageUrl = formData.image_url;
-      
-      // Upload new image if file is selected
-      if (imageFile) {
-        const { data: uploadData, error: uploadError } = await uploadStoreImage(imageFile);
-        if (uploadError) throw uploadError;
-        imageUrl = uploadData.url;
-
-        // Delete old image
-        if (formData.image_url) {
+      // Delete old image if it exists and is different from new one
+      if (formData.image_url && formData.image_url !== imageUrl) {
+        try {
           await deleteStoreImage(formData.image_url);
+        } catch (deleteError) {
+          console.warn('Failed to delete old image:', deleteError);
+          // Continue anyway - this is not critical
         }
       }
-
-      const itemData = {
-        name: formData.name,
-        description: formData.description,
-        price: parseFloat(formData.price),
-        category: formData.category,
-        stock_quantity: parseInt(formData.stock_quantity) || 0,
-        image_url: imageUrl,
-        is_active: formData.is_active
-      };
-
-      const { error } = await updateStoreItem(itemId, itemData);
-      if (error) throw error;
-
-      alert('Item updated successfully!');
-      navigate('/admin/store');
-    } catch (error) {
-      console.error('Error updating item:', error);
-      alert('Error updating item: ' + error.message);
-    } finally {
-      setUploading(false);
     }
-  };
+
+    const itemData = {
+      name: formData.name,
+      description: formData.description,
+      price: parseFloat(formData.price),
+      category: formData.category,
+      stock_quantity: parseInt(formData.stock_quantity) || 0,
+      image_url: imageUrl,
+      is_active: formData.is_active,
+      updated_at: new Date().toISOString() // Add explicit updated_at timestamp
+    };
+
+    console.log('Sending update data:', itemData); // Debug log
+    
+    const { data: updatedItem, error } = await updateStoreItem(itemId, itemData);
+    if (error) {
+      console.error('Update service error:', error);
+      throw error;
+    }
+
+    console.log('Update successful, response:', updatedItem); // Debug log
+    alert('Item updated successfully!');
+    navigate('/admin/store/manage');
+  } catch (error) {
+    console.error('Error updating item:', error);
+    alert('Error updating item: ' + (error.message || 'Unknown error'));
+  } finally {
+    setUploading(false);
+  }
+};
 
   if (loading) {
     return (

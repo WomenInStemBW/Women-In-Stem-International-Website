@@ -268,7 +268,7 @@ const Store = () => {
                   onMouseEnter={(e) => e.currentTarget.style.background = '#a2544bff'}
                   onMouseLeave={(e) => e.currentTarget.style.background = '#c43c2dff'}
                 >
-                  Register Interest →
+                  Order →
                 </button>
               </div>
             </div>

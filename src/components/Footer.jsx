@@ -170,6 +170,7 @@ const Footer = () => {
                 tumok@wisbw.org<br />
                 enqueries@wisbw.org<br />
                 astrowis2018@gmail.com <br />
+                womeninsteminternational@gmail.com<br />
               </p>
             </div>
 

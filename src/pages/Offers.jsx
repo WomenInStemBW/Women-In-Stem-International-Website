@@ -1,13 +1,15 @@
 // src/pages/Offers.jsx
 import React, { useState, useEffect } from 'react';
 import { getAllOffers } from '../services/offerService';
-import girlPic from "../assets/girl_background.webp";
+import { useNavigate } from 'react-router-dom';
+import communityPic from "../assets/community.jpg";
 
 const Offers = () => {
   const [offers, setOffers] = useState([]);
   const [selectedOffer, setSelectedOffer] = useState(null);
   const [loading, setLoading] = useState(true);
   const [view, setView] = useState('list'); // 'list' or 'detail'
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchOffers();
@@ -35,6 +37,10 @@ const Offers = () => {
     setView('list');
   };
 
+  const handleBookOffer = (offer) => {
+    navigate(`/offers/book/${offer.id}`, { state: { offer } });
+  };
+
   if (loading) {
     return (
       <div style={{ padding: '60px 0', minHeight: '100vh', background: '#f8f9fa', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -49,7 +55,7 @@ const Offers = () => {
         <div style={{
           textAlign: 'center',
           marginBottom: '50px',
-          backgroundImage: `url(${girlPic})`,
+          backgroundImage: `url(${communityPic})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -231,18 +237,60 @@ const Offers = () => {
                     style={{ 
                       display: 'inline-block',
                       padding: '12px 30px',
-                      background: '#c43c2dff',
+                      background: '#667eea',
                       color: 'white',
                       textDecoration: 'none',
                       borderRadius: '6px',
                       fontWeight: '600',
+                      marginRight: '15px',
+                      transition: 'background 0.3s ease'
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.background = '#764ba2'}
+                    onMouseLeave={(e) => e.currentTarget.style.background = '#667eea'}
+                  >
+                    Visit Website →
+                  </a>
+                  <button
+                    onClick={() => handleBookOffer(selectedOffer)}
+                    style={{ 
+                      display: 'inline-block',
+                      padding: '12px 30px',
+                      background: '#c43c2dff',
+                      color: 'white',
+                      border: 'none',
+                      borderRadius: '6px',
+                      fontWeight: '600',
+                      cursor: 'pointer',
                       transition: 'background 0.3s ease'
                     }}
                     onMouseEnter={(e) => e.currentTarget.style.background = '#a2544bff'}
                     onMouseLeave={(e) => e.currentTarget.style.background = '#c43c2dff'}
                   >
-                    Visit Website →
-                  </a>
+                    Book Now →
+                  </button>
+                </div>
+              )}
+
+              {!selectedOffer.website_url && (
+                <div style={{ marginTop: '30px' }}>
+                  <button
+                    onClick={() => handleBookOffer(selectedOffer)}
+                    style={{ 
+                      display: 'inline-block',
+                      padding: '12px 30px',
+                      background: '#c43c2dff',
+                      color: 'white',
+                      border: 'none',
+                      borderRadius: '6px',
+                      fontWeight: '600',
+                      cursor: 'pointer',
+                      transition: 'background 0.3s ease'
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.background = '#a2544bff'}
+                    onMouseLeave={(e) => e.currentTarget.style.background = '#c43c2dff'}
+                  >
+                    Book Now →
+                  </button>
                 </div>
               )}
             </div>

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { getAllPublishedEpisodes } from '../services/podcastService';
-import tumpPic from "../assets/tumo.webp"
 
 const AstroSpace = () => {
   const [episodes, setEpisodes] = useState([]);
@@ -291,68 +290,6 @@ const AstroSpace = () => {
                 )}
               </>
             )}
-          </div>
-
-          {/* Hosts Section */}
-          <div>
-            <h2 style={{ fontSize: '2rem', color: '#c43c2dff', marginBottom: '30px', textAlign: 'center' }}>
-              Meet Our Hosts
-            </h2>
-
-            <div className="row g-4">
-              {/* Host 1 */}
-              <div className="col-md-4">
-                <div style={{ background: 'white', padding: '30px', borderRadius: '10px', boxShadow: '0 2px 10px rgba(0,0,0,0.1)', textAlign: 'center', height: '100%' }}>
-                  <div style={{
-                    width: '120px',
-                    height: '120px',
-                    borderRadius: '50%',
-                    margin: '0 auto 20px',
-                    overflow: 'hidden',
-                    border: '4px solid #ea8966ff'
-                  }}>
-                    <img
-                      src={tumpPic}
-                      alt="Tumo Fortunate Kedumele"
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover'
-                      }}
-                      onError={(e) => {
-                        e.target.style.display = 'none';
-                        const fallback = e.target.parentElement.querySelector('.host-fallback');
-                        if (fallback) fallback.style.display = 'flex';
-                      }}
-                    />
-                    <div 
-                      className="host-fallback"
-                      style={{
-                        display: 'none',
-                        background: 'linear-gradient(135deg, #ea8966ff 0%, #a2544bff 100%)',
-                        width: '100%',
-                        height: '100%',
-                        borderRadius: '50%',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        fontSize: '2rem',
-                        color: 'white'
-                      }}
-                    >
-                      👤
-                    </div>
-                  </div>
-                  <h4 style={{ color: '#2d3748', marginBottom: '10px' }}>Tumo Fortunate Kedumele</h4>
-                  <p style={{ color: '#718096', fontSize: '0.9rem', marginBottom: '15px' }}>Astronomy and Engineering Researcher</p>
-                  <p style={{ color: '#4a5568', fontSize: '0.95rem', lineHeight: '1.6' }}>
-                    I have always been interested in STEM subjects from a young age, I was also passionate about astronomy and fascinated by space technology. During varsity years I was mostly drawn to space communication, particularly satellites, cubesats, radio and microwave engineering. Venturing into the astronomy field gave me an opportunity to work with radio communication, instrumentation and astronomy in radio astronomy research.
-                  </p>
-                </div>
-              </div>
-
-              {/* Add more host sections here as needed */}
-              
-            </div>
           </div>
         </div>
       </div>

@@ -76,7 +76,7 @@ const CreateStoreItem = () => {
       if (error) throw error;
 
       alert('Item created successfully!');
-      navigate('/admin/store');
+      navigate('/admin/store/manage');
     } catch (error) {
       console.error('Error creating item:', error);
       alert('Error creating item: ' + error.message);
@@ -210,7 +210,7 @@ const CreateStoreItem = () => {
       <div className="create-store-item">
         <div className="container">
           <div className="page-header">
-            <a href="/admin/store" className="back-link">← Back to Store Management</a>
+            <a href="/admin/store/manage" className="back-link">← Back to Store Management</a>
             <h1 className="page-title">Create New Store Item</h1>
           </div>
 

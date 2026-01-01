@@ -31,7 +31,7 @@ const ManageStore = () => {
   };
 
   const handleEdit = (item) => {
-    navigate(`/admin/store/edit/${item.id}`, { state: { item } });
+    navigate(`/admin/store/update/${item.id}`, { state: { item } });
   };
 
   const handleDelete = async (item) => {
