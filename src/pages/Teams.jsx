@@ -78,16 +78,40 @@ const Teams = () => {
         }
 
         .modal-content {
-          background: white;
-          padding: 40px;
-          border-radius: 15px;
-          max-width: 600px;
-          width: 100%;
-          max-height: 90vh;
-          overflow-y: auto;
-          position: relative;
-          animation: slideUp 0.3s ease;
-        }
+  background: white;
+  padding: 40px;
+  border-radius: 15px;
+  max-width: 600px;
+  width: 100%;
+  position: relative;
+  animation: slideUp 0.3s ease;
+}
+
+        /* Add this new class for the scrollable bio section */
+.bio-scrollable {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-top: 20px;
+}
+
+/* Scrollbar styling for bio section */
+.bio-scrollable::-webkit-scrollbar {
+  width: 6px;
+}
+
+.bio-scrollable::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.bio-scrollable::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 10px;
+}
+
+.bio-scrollable::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}
 
         @keyframes slideUp {
           from {
@@ -292,115 +316,118 @@ const Teams = () => {
       </div>
 
       {/* Modal for member bio */}
-      {selectedMember && (
-        <div className="modal-overlay" onClick={handleCloseModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="close-button" onClick={handleCloseModal}>
-              ×
-            </button>
+{selectedMember && (
+  <div className="modal-overlay" onClick={handleCloseModal}>
+    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+      <button className="close-button" onClick={handleCloseModal}>
+        ×
+      </button>
 
-            {/* Member Image */}
-            <div style={{
-              width: '150px',
-              height: '150px',
-              borderRadius: '50%',
-              margin: '0 auto 25px',
-              overflow: 'hidden',
-              border: '4px solid #667eea',
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+      {/* Member Image */}
+      <div style={{
+        width: '150px',
+        height: '150px',
+        borderRadius: '50%',
+        margin: '0 auto 25px',
+        overflow: 'hidden',
+        border: '4px solid #667eea',
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+      }}>
+        {selectedMember.image_url ? (
+          <img
+            src={selectedMember.image_url}
+            alt={selectedMember.name}
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover'
+            }}
+          />
+        ) : (
+          <div style={{
+            display: 'flex',
+            width: '100%',
+            height: '100%',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '3rem',
+            color: 'white'
+          }}>
+            👤
+          </div>
+        )}
+      </div>
+
+      {/* Member Details */}
+      <div style={{ textAlign: 'center' }}>
+        <h2 style={{ color: '#2d3748', marginBottom: '10px' }}>
+          {selectedMember.name}
+        </h2>
+
+        {selectedMember.role && (
+          <p style={{ 
+            color: '#c43c2dff', 
+            fontSize: '1.1rem', 
+            fontWeight: '600', 
+            marginBottom: '8px' 
+          }}>
+            {selectedMember.role}
+          </p>
+        )}
+
+        {selectedMember.teamName && (
+          <p style={{ 
+            color: '#667eea', 
+            fontSize: '1rem', 
+            fontWeight: '500', 
+            marginBottom: '25px' 
+          }}>
+            {selectedMember.teamName} Team
+          </p>
+        )}
+
+        {selectedMember.bio ? (
+          <div style={{ 
+            textAlign: 'left',
+            marginTop: '20px'
+          }}>
+            <h3 style={{ 
+              color: '#2d3748', 
+              fontSize: '1.1rem', 
+              marginBottom: '15px' 
             }}>
-              {selectedMember.image_url ? (
-                <img
-                  src={selectedMember.image_url}
-                  alt={selectedMember.name}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover'
-                  }}
-                />
-              ) : (
-                <div style={{
-                  display: 'flex',
-                  width: '100%',
-                  height: '100%',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '3rem',
-                  color: 'white'
-                }}>
-                  👤
-                </div>
-              )}
-            </div>
-
-            {/* Member Details */}
-            <div style={{ textAlign: 'center' }}>
-              <h2 style={{ color: '#2d3748', marginBottom: '10px' }}>
-                {selectedMember.name}
-              </h2>
-
-              {selectedMember.role && (
-                <p style={{ 
-                  color: '#c43c2dff', 
-                  fontSize: '1.1rem', 
-                  fontWeight: '600', 
-                  marginBottom: '8px' 
-                }}>
-                  {selectedMember.role}
-                </p>
-              )}
-
-              {selectedMember.teamName && (
-                <p style={{ 
-                  color: '#667eea', 
-                  fontSize: '1rem', 
-                  fontWeight: '500', 
-                  marginBottom: '25px' 
-                }}>
-                  {selectedMember.teamName} Team
-                </p>
-              )}
-
-              {selectedMember.bio ? (
-                <div style={{ 
-                  textAlign: 'left',
-                  background: '#f7fafc',
-                  padding: '20px',
-                  borderRadius: '10px',
-                  marginTop: '20px'
-                }}>
-                  <h3 style={{ 
-                    color: '#2d3748', 
-                    fontSize: '1.1rem', 
-                    marginBottom: '15px' 
-                  }}>
-                    About
-                  </h3>
-                  <p style={{ 
-                    color: '#4a5568', 
-                    fontSize: '1rem', 
-                    lineHeight: '1.7',
-                    margin: 0,
-                    whiteSpace: 'pre-wrap'
-                  }}>
-                    {selectedMember.bio}
-                  </p>
-                </div>
-              ) : (
-                <p style={{ 
-                  color: '#718096', 
-                  fontSize: '0.95rem',
-                  fontStyle: 'italic',
-                  marginTop: '20px'
-                }}>
-                  No bio available.
-                </p>
-              )}
+              About
+            </h3>
+            <div className="bio-scrollable" style={{
+              background: '#f7fafc',
+              padding: '20px',
+              borderRadius: '10px'
+            }}>
+              <p style={{ 
+                color: '#4a5568', 
+                fontSize: '1rem', 
+                lineHeight: '1.7',
+                margin: 0,
+                whiteSpace: 'pre-wrap'
+              }}>
+                {selectedMember.bio}
+              </p>
             </div>
           </div>
-        </div>
-      )}
+        ) : (
+          <p style={{ 
+            color: '#718096', 
+            fontSize: '0.95rem',
+            fontStyle: 'italic',
+            marginTop: '20px'
+          }}>
+            No bio available.
+          </p>
+        )}
+      </div>
+    </div>
+  </div>
+)}
     </>
   );
 };
